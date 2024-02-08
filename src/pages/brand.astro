@@ -1,0 +1,304 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+
+import logo from '../assets/images/brand/logo-256.png';
+import logoWordmark from '../assets/images/brand/logo-wordmark-256.png';
+
+import markLight from '../assets/images/brand/mark-light-256.png';
+import markDark from '../assets/images/brand/mark-dark-256.png';
+
+import markWordmarkLight from '../assets/images/brand/mark-wordmark-light-256.png';
+import markWordmarkDark from '../assets/images/brand/mark-wordmark-dark-256.png';
+
+import banner from '../assets/images/brand/banner-320-132.png';
+
+import check from '../assets/images/icons/check.svg';
+import cross from '../assets/images/icons/cross.svg';
+
+import company from '../data/company.json';
+---
+
+<PageLayout title='Branding' description=`Branding for ${company.name}.`>
+	<Fragment slot="page-header">Branding</Fragment>
+	<article slot="page-content">
+		<p><strong>Do not use our branding to impersonate or misrepresent us.</strong> When in doubt about whether you can use our branding, <a href="/contact">contact us</a> for approval.</p>
+		<h2>Permitted Logos</h2>
+		<h3>Logo</h3>
+		<div class="grid-2col">
+			<figure style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+				<img class="rounded" src={logo.src} alt=`${company.name} Logo` />
+			</figure>
+			<figure style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+				<img class="rounded" src={logoWordmark.src} alt=`${company.name} Logo with Wordmark` />
+			</figure>
+		</div>
+		<h3>Mark</h3>
+		<div class="grid-2col">
+			<div class="transparent-image-container-dark"><img src={markLight.src} alt="Mark (Light)"></img></div>
+			<div class="transparent-image-container-light"><img src={markDark.src} alt="Mark (Dark)"></img></div>
+		</div>
+		<h3>Mark with Wordmark</h3>
+		<div class="grid-2col">
+			<div class="transparent-image-container-dark"><img src={markWordmarkLight.src} alt="Mark (Light)"></img></div>
+			<div class="transparent-image-container-light"><img src={markWordmarkDark.src} alt="Mark (Dark)"></img></div>
+		</div>
+		<h3>Banner</h3>
+		<div class="brand-banner-container">
+			<figure style="display: flex; flex-direction: column; justify-content: center; align-items: center;">
+				<img class="rounded" src={banner.src} alt=`${company.name} Banner` />
+			</figure>
+		</div>
+		<h2>Typeface</h2>
+		<p>We use the <b><a href="https://fonts.google.com/specimen/Nunito">Nunito</a></b> typeface for our logo/wordmark.
+			<br>
+			For our website text and headings, we are currently using <b><a href="https://fonts.google.com/noto">Noto Sans</a></b>.
+			<br><br>
+			For the logo & mark, we use <b>Nunito SemiBold</b> at a font size of <b>96 points</b>.
+			<br>
+			For the banner, we use <b>Nunito SemiBold</b> at a font size of <b>144 points</b>.</p>
+		<h2>Spacing & Corner Radius</h2>
+		<p>
+			The logo, or logo with wordmark together, should be centered in the image.
+			<br><br>
+			We use a corner radius of 24 pixels for our logos.
+		</p>
+		<h2>Colors</h2>
+		<div class="brand-color-grid">
+
+			<div class="brand-color-card rounded" style="--brand-color-card-hex: #BD8A6B; --brand-color-card-text-color: #FFFBFF;">
+				<h3>Brand</h3>
+				<div class="brand-color-text-block">
+					<p>#BD8A6B</p>
+					<p>CMYK 0, 20, 32, 26</p>
+				</div>
+			</div>
+			
+			<div class="brand-color-card rounded" style="--brand-color-card-hex: #FFFBFF; --brand-color-card-text-color: #201A17;">
+				<h3>White</h3>
+				<div class="brand-color-text-block">
+					<p>#FFFBFF</p>
+					<p>CMYK 0, 2, 0, 0</p>
+				</div>
+			</div>
+			
+			<div class="brand-color-card rounded" style="--brand-color-card-hex: #201A17; --brand-color-card-text-color: #FFFBFF;">
+				<h3>Black</h3>
+				<div class="brand-color-text-block">
+					<p>#201A17</p>
+					<p>CMYK 0, 2, 4, 87</p>
+				</div>
+			</div>
+			
+			<div class="brand-color-card rounded" style="--brand-color-card-hex: #96490A; --brand-color-card-text-color: #FFFBFF;">
+				<h3>Primary (Light)</h3>
+				<div class="brand-color-text-block">
+					<p>#96490A</p>
+					<p>CMYK 0, 30, 55, 41</p>
+				</div>
+			</div>
+			
+			<div class="brand-color-card rounded" style="--brand-color-card-hex: #FFB68A; --brand-color-card-text-color: #201A17;">
+				<h3>Primary (Dark)</h3>
+				<div class="brand-color-text-block">
+					<p>#FFB68A</p>
+					<p>CMYK 0, 29, 46, 0</p>
+				</div>
+			</div>
+			
+			
+			<div class="brand-color-card rounded" style="--brand-color-card-hex: #B02B33; --brand-color-card-text-color: #FFFBFF;">
+				<h3>Accent (Light)</h3>
+				<div class="brand-color-text-block">
+					<p>#B02B33</p>
+					<p>CMYK 0, 52, 49, 31</p>
+				</div>
+			</div>
+			
+			<div class="brand-color-card rounded" style="--brand-color-card-hex: #F5BE48; --brand-color-card-text-color: #201A17;">
+				<h3>Accent (Dark)</h3>
+				<div class="brand-color-text-block">
+					<p>#F5BE48</p>
+					<p>CMYK 0, 22, 68, 4</p>
+				</div>
+			</div>
+			
+		</div>
+		<h2>Guidelines</h2>
+		<div class="grid-2col">
+			<div>
+				<h3>Do these things</h3>
+				<ul role='list' class="approve">
+					<li>Use a permitted {company.name} logo to link to {company.name}.</li>
+					<li>Use the {company.name} mark as a social button to link back to {company.name}.</li>
+					<li>Use a permitted {company.name} logo to inform others that your project integrates with one of our projects.</li>
+					<li>Use a permitted {company.name} logo in a blog post or news article about {company.name}.</li>
+				</ul>
+			</div>
+			<div>
+				<h3>Don't do these things</h3>
+				<ul role='list' class="disapprove">
+					<li>Do not use the {company.name} name or any {company.name} logo in a way that suggests you are {company.name}, your offering or project is by {company.name}, or that {company.name} is endorsing you or your offering or project.</li>
+					<li>Do not use any {company.name} logo as the icon or logo for your business/organization, offering, project, domain name, social media account, or website.</li>
+					<li>Do not modify the permitted {company.name} logos, including changing the color, dimensions, or combining with other words or design elements.</li>
+					<li>Do not use {company.name} logos or artwork without {company.name}'s prior written permission.</li>
+				</ul>
+			</div>
+		</div>
+		<h3>Logo</h3>
+		<p>
+			You should use the logo when it is the main element in your design. If the design requires a longer width than height, then opt for the banner instead.
+			<br><br>
+			<b>Wordmark</b>: In most cases, the wordmark should be included in the logo. The logo should only exclude the wordmark if the context already establishes the brand and makes clear that you are talking about {company.name}.
+		</p>
+		<h3>Mark</h3>
+		<p>
+			Use our mark when the brand has already been clearly established on the page or in the design. It is also acceptable to use the mark to link to our website where appropriate.
+			<br><br>
+			Please do not place our mark on heavily textured or complex backgrounds.
+			<br><br>
+			<b>Wordmark</b>: In some rare contexts, it may be appropriate to use the mark with the wordmark placed below it. When using it as a hyperlink, please omit the wordmark.
+		</p>
+		<h3>Banner</h3>
+		<p>
+			The banner largely serves the same purpose as the {company.name} logo, but is used in situations where the logo will not work well, and where a banner makes more sense.
+			<br><br>
+			<b>Wordmark</b>: The wordmark should never be omitted from the banner.
+		</p>
+		<h2>Download</h2>
+		<p>You can <a href="/contact">contact us</a> for direct access to our branding.
+			<br><br>
+			A self-serve download button will come at a later date.</p>
+	</article>
+</PageLayout>
+
+<style lang="scss">
+.logo {
+	border-radius: 12%; /* Adjust the value for desired roundness */
+	overflow: hidden; /* This is important to clip the overflowing content */
+}
+
+.approve { // For ul
+	padding-inline-start: 0 !important;
+	margin-top: 16px !important;
+
+	li {
+		margin-top: 0.75rem;
+		font-size: 16px;
+		color: var(--color-on-surface-variant);
+	}
+
+	li:before {
+		display: inline-block;
+		vertical-align: middle;
+		padding-right: 8px;
+		content: url(../assets/images/icons/check.svg);
+	}
+}
+
+.disapprove { // For ul
+	padding-inline-start: 0 !important;
+	margin-top: 16px !important;
+
+	li {
+		margin-top: 0.75rem;
+		font-size: 16px;
+		color: var(--color-on-surface-variant);
+	}
+
+	li:before {
+		display: inline-block;
+		vertical-align: middle;
+		padding-right: 8px;
+		content: url(../assets/images/icons/cross.svg);
+	}
+}
+
+.grid-2col {
+	grid-auto-columns: 1fr;
+	display: grid;
+	grid-column-gap: 24px;
+	grid-row-gap: 24px;
+	grid-template-rows: auto;
+	grid-template-columns: 1fr 1fr;
+	align-items: start;
+}
+
+.brand-banner-container {
+	display: flex;
+}
+
+@mixin transparent-image-container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	position: relative;
+	padding-left: 16px;
+	padding-right: 16px;
+
+	background-position: 0%;
+	background-size: 32px;
+
+	min-height: 128px;
+	border: 2px solid var(--color-outline);
+	border-radius: 8px;
+}
+
+.transparent-image-container-light {
+	@include transparent-image-container;
+	background-image: url(../assets/images/utilities/transparent-bg-light.png);
+}
+
+.transparent-image-container-dark {
+	@include transparent-image-container;
+	background-image: url(../assets/images/utilities/transparent-bg-dark.png);
+}
+
+.brand-color-grid {
+	display: grid;
+	grid-column-gap: 24px;
+	grid-row-gap: 24px;
+	grid-template-rows: auto;
+	grid-template-columns: 1fr 1fr 1fr;
+	margin-top: 1.77rem;
+}
+
+.brand-color-card {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	width: 100%;
+	height: 224px;
+	max-width: 384px !important;
+	max-height: 224px !important;
+	padding: 20px;
+
+	background-color: var(--brand-color-card-hex);
+	color: var(--brand-color-card-text-color);
+	text-align: left;
+	font-weight: 400;
+	line-height: 150%;
+	border: 2px solid var(--color-outline);
+
+	h3 {
+		margin: 0;
+	}
+
+	p {
+		margin: 0;
+	}
+}
+
+.brand-color-text-block {
+	color: var(--brand-color-card-text-color);
+	font-size: 20px;
+	line-height: 28px;
+}
+
+.rounded {
+	border-radius: var(--default-corner-radius);
+}
+
+figure {
+	margin: 0;
+}
+</style>

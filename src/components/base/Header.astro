@@ -1,0 +1,47 @@
+---
+import Nav from './Nav.astro';
+
+import svgLogo from '../../assets/svg/logo.svg';
+
+import company from '../../data/company.json';
+---
+<header>
+	<div class="wrapper">
+		<div class="inner">
+			<a href="/" aria-label="Home" class="site-header-brand">
+				<img src={svgLogo.src} alt=`${company.name} Logo` class="logo roundable" aria-hidden="true" onload="this.style.visibility='visible'"/>
+			</a>
+			<Nav/>
+		</div>
+	</div>
+</header>
+
+<style lang="scss">
+header {
+	font-size: 1.33rem;
+	padding: 1.75rem 0;
+	
+	.inner {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+		align-items: center;
+	}
+
+	svg {
+		width: auto;
+		flex-shrink: 0;
+		margin-inline-end: 1.75rem;
+	}
+
+	.logo {
+		width: 96px;
+		height: 96px;
+	}
+
+	img { // Workaround for image flashing alt text before loading on Firefox -- requires onload on img tag
+		visibility: hidden;
+	}
+
+}
+</style>

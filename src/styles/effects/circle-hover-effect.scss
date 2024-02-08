@@ -1,0 +1,10 @@
+.circle-hover-effect {
+	transition: background-color 0.25s;
+	padding: 0.25em; // Space between the icon and the background edge
+	border-radius: 50%; // Make it rounded
+}
+  
+.circle-hover-effect:hover {
+	background-color: var(--color-hover-background) !important;
+	cursor: pointer;
+}

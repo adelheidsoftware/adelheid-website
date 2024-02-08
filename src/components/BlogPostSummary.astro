@@ -1,0 +1,40 @@
+---
+interface Props {
+	href: string;
+	title: string;
+	summary: string;
+	author: string;
+	postText?: string;
+	date?: Date;
+}
+
+import LinkCard from '../components/LinkCard.astro';
+const { href, title, summary, author, postText, date } = Astro.props;
+
+// Date
+const dateOptions: object = {
+	year: "numeric",
+	month: "long",
+	day: "numeric",
+};
+
+const formattedDate = date != undefined ? date.toLocaleDateString("en-US", dateOptions) : undefined;
+
+// Word Count
+function countWordsRegex(str?: string): number {
+	if (!str) { 
+		return 0; // Return 0 if no string is provided
+	}
+
+	const words = str.match(/(?<![_*\d])\b\w+\b(?![_*\d])/g); // Regex that attempts to parse words while excluding Markdown. It's a monster, I know, but it gets closer to an accurate word count than more naive approaches, and it just needs to be close enough anyway.
+	return words ? words.length : 0;
+}
+
+const wordCount = countWordsRegex(postText);
+const readingSpeedWpm = 238;
+
+const minutes = Math.ceil(wordCount / readingSpeedWpm);
+---
+<LinkCard href={href} title={title} body={summary}>
+	<small slot="footer"><strong>By {author}</strong> {formattedDate && `· ${formattedDate}`} {minutes > 0 && `· ${minutes} minute read`}</small>
+</LinkCard>

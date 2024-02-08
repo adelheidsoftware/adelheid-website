@@ -1,0 +1,54 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+
+import company from '../data/company.json';
+---
+
+<PageLayout title='Games' description=`Games developed by ${company.name}.`>
+	<Fragment slot="page-header">Games</Fragment>
+	<article slot="page-content">
+		<h2>Upcoming</h2>
+		<h3>Posthaste!</h3>
+		<p>
+			<b>Framework</b>: <a href="https://godotengine.org">Godot Engine</a>
+			<br>
+			<b>Development status</b>: Active Development
+			<br>
+			<b>Release date</b>: Q2/Q3 2024
+			<br>
+			<b>Steam page</b>: Coming late February 2024
+			<br><br>
+			<b>Posthaste!</b> is a 2D arcade-style mail-sorting game.
+		</p>
+		<h3>Ailuros</h3>
+		<p>
+			<b>Framework</b>: <a href="https://godotengine.org">Godot Engine</a>
+			<br>
+			<b>Development status</b>: Planning
+			<br>
+			<b>Release date</b>: Q3/Q4 2024
+			<br>
+			<b>Steam page</b>: Coming late April / Early May 2024
+			<br><br>
+			<b>Ailuros</b> is a 2D pixel art platformer where you play as a cat.
+		</p>
+		<h3>Project Artemis</h3>
+		<p>
+			<b>Framework</b>: <a href="https://godotengine.org">Godot Engine</a>
+			<br>
+			<b>Development status</b>: Planning
+			<br>
+			<b>Release date</b>: TBA
+			<br><br>
+			<b>Project Artemis</b> is the codename and working title for a 2D Metroidvania set in a quasi-medieval period.
+		</p>
+		<!--<h2>Released</h2>
+		<p><i>Nothing yet.</i></p>-->
+	</article>
+</PageLayout>
+
+<style lang="scss">
+p {
+	margin-top: 0.5rem;
+}
+</style>

@@ -1,0 +1,92 @@
+---
+const navItems = [
+	{ href: '/', label: 'Home' },
+	{ href: '/games', label: 'Games' },
+	{ href: '/software', label: 'Software' },
+	{ href: '/blog', label: 'Blog' },
+	{ href: '/about', label: 'About' },
+];
+---
+<nav aria-label="Primary">
+	<ul role='list'>
+		{navItems.map((item) =>  (
+			<li>
+				<a href={item.href} aria-current={Astro.url.pathname === item.href ? "page" : undefined}>{item.label}</a>
+			</li>
+		))}
+	</ul>
+</nav>
+
+<style lang="scss">
+nav {
+	line-height: 1;
+	font-weight: 900;
+	margin-top: -1rem;
+	margin-inline-start: -1rem; // TODO: Change this to flexbox or something
+
+	ul {
+		display: flex;
+		flex-wrap: wrap;
+
+		>* {
+			padding-top: 1rem;
+			padding-inline-start: 1rem;
+		}
+	}
+
+	a {
+		text-decoration: none;
+		display: block;
+		position: relative;
+
+		&:link,
+		&:visited,
+		&:hover,
+		&:active {
+			color: var(--color-on-background);
+	  		text-decoration: none;
+		}
+
+		// Animation when hovering over non-active nav links
+		&:not([aria-current='page']) {
+			width: 0%;
+			transition: width 0.1s ease-in-out;
+		}
+
+		// Adds underline to non-active items when hovered
+		&:hover {
+			width: 100%;
+
+			&:before {
+				content: '';
+				display: block;
+				width: 100%;
+				height: 0.25rem;
+				position: absolute;
+				top: 100%;
+				left: 0;
+				margin-top: 0.25rem;
+				border-radius: 16px;
+				background: var(--color-primary);
+			}
+		}
+
+		// Adds permanent underline to active state items
+		&[aria-current='page'] {
+			&:before {
+				content: '';
+				display: block;
+				width: 100%;
+				height: 0.25rem;
+				position: absolute;
+				top: 100%;
+				left: 0;
+				margin-top: 0.25rem;
+				border-radius: 16px;
+				background: var(--color-on-background);
+			}
+		}
+
+	}
+}
+</style>

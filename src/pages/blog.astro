@@ -1,0 +1,40 @@
+---
+import { getCollection } from "astro:content";
+import PageLayout from '../layouts/PageLayout.astro';
+import BlogPostSummary from '../components/BlogPostSummary.astro';
+import Separator from '../components/utility/Separator.astro';
+
+const posts = await getCollection("posts");
+//posts.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+
+import company from '../data/company.json';
+---
+
+<PageLayout title='Blog' description=`The official ${company.name} blog.`>
+	<Fragment slot="page-header">Blog</Fragment>
+	<article slot="page-content">
+		<p class="tagline">Welcome to the {company.name} blog! You can find all of our blog posts on this page.</p>
+		<div>
+			<ul>
+				{
+					posts.map((post) => (
+					  <BlogPostSummary href={`/posts/${post.slug}`} title={post.data.title} summary={post.data.summary} date={post.data.pubDate} author={post.data.author} postText={post.body} />
+					  <div class="post-separator"></div>
+					))
+				  }
+			</ul>
+		</div>
+	</article>
+</PageLayout>
+
+<style lang="scss">
+ul {
+	margin: 0;
+	padding: 0;
+}
+.post-separator {
+	border-bottom: 1px solid var(--color-outline);
+	margin-left: 16px;
+	margin-right: 16px;
+}
+</style>

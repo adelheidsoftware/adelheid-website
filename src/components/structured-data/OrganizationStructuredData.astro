@@ -1,0 +1,24 @@
+---
+import company from '../../data/company.json';
+
+const schema = 	{
+		"@context": "https://schema.org",
+		"@type": "Organization",
+		"name": `${company.legalName}`,
+		"description": `${company.name} is an independent game and software development studio.`,
+		"url": `${Astro.site}`,
+		"logo": `${Astro.site}favicon.png`,
+		"email": `${company.contactEmail}`,
+		"founder": "Aaron Yoder",
+		"foundingDate": "2024-01-01",
+		"foundingLocation": {
+			"@type": "PostalAddress",
+			"addressRegion": "Ohio",
+			"addressCountry": {
+				"@type": "Country",
+				"name": "United States"
+			}
+		}
+};
+---
+<script type="application/ld+json" set:html={JSON.stringify(schema)} />

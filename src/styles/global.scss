@@ -1,0 +1,155 @@
+@import 'normalize';
+@import 'adelheid-reset';
+@import 'theme';
+@import 'defs';
+
+:root {
+	@include root-defs;
+}
+
+.site-wrapper {
+	overflow-x: hidden;
+	position: relative;
+}
+
+.wrapper {
+	max-width: var(--page-max-width);
+	padding: 0 1.33rem;
+	margin-left: auto;
+	margin-right: auto;
+	position: relative;
+}
+
+.feed-wrapper {
+	max-width: var(--feed-max-width);
+	padding: 0 1.33rem;
+	margin-left: auto;
+	margin-right: auto;
+	position: relative;
+}
+
+.page-content {
+	padding-bottom: 2rem;
+}
+
+div {
+	//border: 1px solid red;
+}
+
+p {
+	//border: 1px solid blue;
+}
+
+html {
+	font-family: 'Noto Sans', sans-serif;
+}
+
+code {
+	font-family: 'Noto Sans Mono', monospace;
+}
+
+body, h1, h2, h3, h4, h5, h6, p, small {
+	line-height: 1.6; // Unsure
+}
+
+body {
+	background: var(--color-background);
+	color: var(--color-on-background); // Text color
+
+	transition: all 0.5s;
+
+	font-size: 16px;
+	font-weight: 500;
+}
+
+// Based on Major Second scale at body size of 16px
+h1 {
+	font-size: 2.027rem;
+}
+
+h2 {
+	font-size: 1.802rem;
+}
+
+h3 {
+	font-size: 1.602rem;
+}
+
+h4 {
+	font-size: 1.424rem;
+}
+
+h5 {
+	font-size: 1.266rem;
+}
+
+h6 {
+	font-size: 1.125rem;
+}
+
+p {
+	font-size: 1rem;
+}
+
+small {
+	font-size: 0.889rem;
+}
+
+/* Hyperlink/Anchor Global Styles */
+
+a:not([class]) {
+	color: currentColor;
+	text-decoration-color: var(--color-secondary);
+}
+
+// Normal
+a:link {
+	color: var(--color-primary);
+	text-decoration: none;
+}
+
+// Visited
+a:visited {
+	color: var(--color-primary); // We don't want visited links to look different
+	text-decoration: none;
+}
+
+// Hovering over link
+a:hover {
+	color: var(--color-tertiary);
+	text-decoration: underline;
+}
+
+// Link is selected/clicked down on
+a:active {
+	color: var(--color-secondary);
+	text-decoration: underline;
+}
+
+/* End Hyperlink/Anchor Global Styles */
+
+::selection {
+	color: var(--color-background); // Text color
+	background: var(--color-on-background);
+}
+
+/* Scrollbar styles */
+::-webkit-scrollbar {
+	height: 1rem;
+}
+
+::-webkit-scrollbar-track {
+	background-color: var(--color-surface);
+	border: 1px solid var(--color-outline);
+	border-radius: 0.25rem;
+}
+
+::-webkit-scrollbar-thumb {
+	background-color: var(--color-on-surface);
+	border-radius: 0.25rem;
+}
+
+.roundable { // We want to round this -- primarily used for logo
+	border-radius: 12%; /* Adjust the value for desired roundness */
+	overflow: hidden; /* This is important to clip the overflowing content */
+}

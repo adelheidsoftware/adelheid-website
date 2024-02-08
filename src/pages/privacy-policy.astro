@@ -1,0 +1,11 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+
+import {Content as PrivacyPolicyMarkdown} from '../components/markdown/privacy-policy.md';
+
+import company from '../data/company.json';
+---
+
+<PageLayout title='Privacy Policy' description=`The privacy policy for ${company.name}.`>
+	<PrivacyPolicyMarkdown slot="page-content"/>
+</PageLayout>

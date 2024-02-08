@@ -1,0 +1,91 @@
+---
+interface Props {
+	href: string;
+	title: string;
+	body: string;
+	backgroundColor?: string;
+	foregroundColor?: string;
+	hoverBackgroundColor?: string;
+	hoverForegroundColor?: string;
+}
+
+const { href, title, body,
+backgroundColor = 'transparent',
+foregroundColor = 'var(--color-on-background)',
+hoverBackgroundColor = 'var(--color-hover-post)',
+hoverForegroundColor = 'var(--color-on-tertiary-container)' } = Astro.props;
+---
+<li class="link-card">
+	<a href={href}>
+		<h3 class="title">
+			{title}
+		</h3>
+		<p class="body">
+			{body}
+		</p>
+		<div class="footer-slot">
+			<slot name="footer"/>
+		</div>
+	</a>
+</li>
+
+<style lang="scss" define:vars={{ backgroundColor, foregroundColor, hoverBackgroundColor, hoverForegroundColor }}>
+.link-card {
+	list-style: none;
+	padding: 8px 16px;
+	border-radius: 8px;
+	margin-top: 16px;
+	margin-bottom: 16px;
+	background-color: var(--backgroundColor);
+	color: var(--foregroundColor);
+
+	&:hover {
+		cursor: pointer;
+		background-color: var(--hoverBackgroundColor);
+
+		.title {
+			color: var(--hoverForegroundColor);
+		}
+
+		.body {
+			color: var(--hoverForegroundColor);
+		}
+
+		.footer-slot {
+			background-color: transparent;
+			color: var(--hoverForegroundColor);
+		}
+	}
+}
+
+.link-card > a {
+	text-decoration: none;
+	color: var(--foregroundColor);
+
+	&:link, &:visited, &:hover, &:active {
+		text-decoration: none;
+	}
+}
+
+.title {
+	color: var(--foregroundColor);
+	padding: 0;
+	margin: 0;
+}
+
+.body {
+	color: var(--foregroundColor);
+	padding: 0;
+	margin: 0;
+	max-width: 80%;
+	font-size: 1.2rem;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+
+.footer-slot {
+	background-color: var(--backgroundColor);
+	color: var(--foregroundColor);
+}
+</style>

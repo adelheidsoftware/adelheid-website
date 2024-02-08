@@ -1,0 +1,50 @@
+---
+import { getCollection } from "astro:content";
+import BaseLayout from '../../layouts/BaseLayout.astro';
+
+import BlogPostSummary from '../../components/BlogPostSummary.astro';
+
+export async function getStaticPaths() {
+	const allPosts = await getCollection("posts");
+	const uniqueTags = [...new Set(allPosts.map((post) => post.data.tags).flat())];
+
+	return uniqueTags.map((tag) => {
+		const filteredPosts = allPosts.filter((post) => post.data.tags.includes(tag));
+		return {
+			params: { tag },
+			props: { posts: filteredPosts },
+		};
+	});
+}
+
+const { tag } = Astro.params;
+const { posts } = Astro.props;
+
+import company from '../../data/company.json';
+---
+<BaseLayout title=`${tag} | ${company.name} Blog` description=`Posts tagged with ${tag}.`>
+	<div class="wrapper">
+		<!-- TODO: Go back to 'all tags' button -->
+			<p>Posts tagged with {tag}</p>
+			<ul>
+				{
+					posts.map((post) => (
+					  <BlogPostSummary href={`/posts/${post.slug}`} title={post.data.title} summary={post.data.summary} date={post.data.pubDate} author={post.data.author} postText={post.body} />
+					  <div class="post-separator"></div>
+					))
+				}
+			</ul>
+	</div>
+</BaseLayout>
+
+<style lang="scss">
+ul {
+	margin: 0;
+	padding: 0;
+}
+.post-separator {
+	border-bottom: 1px solid var(--color-outline);
+	margin-left: 16px;
+	margin-right: 16px;
+}
+</style>

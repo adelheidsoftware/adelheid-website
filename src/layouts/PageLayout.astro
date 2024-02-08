@@ -1,0 +1,54 @@
+---
+import BaseLayout from '../layouts/PageLayout.astro';
+
+import PageHeader from '../components/base/PageHeader.astro'
+
+import company from '../data/company.json';
+
+interface Props {
+	title: string;
+	description: string;
+}
+
+Astro.slots.has("page-header");
+
+const { title, description } = Astro.props;
+---
+
+<BaseLayout title=`${title} | ${company.name}` description={description}>
+	{Astro.slots.has("page-header") &&
+	<PageHeader>
+		<slot name="page-header"/>
+	</PageHeader>
+	}
+	<div class="page-content wrapper">
+		<slot name="page-content"/>
+	</div>
+</BaseLayout>
+
+<style is:global lang="scss">
+	h1 {
+		font-size: 2.8rem;
+		font-weight: 900;
+		line-height: 1.1;
+		padding-bottom: 1rem;
+	}
+
+	h2 {
+		line-height: 1;
+	}
+
+	p {
+		//max-width: 65ch;
+		font-size: 1.33rem;
+	}
+
+	ul:not([role='list']) {
+		li {
+			//max-width: 65ch;
+			font-size: 1.33rem;
+			line-height: 1.7;
+			padding-bottom: 1rem;
+		}
+	}
+</style>

@@ -1,0 +1,26 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+
+import company from '../data/company.json';
+import social from '../data/social.json';
+---
+
+<PageLayout title='Contact' description=`Contact methods for ${company.name}.`>
+	<Fragment slot="page-header">Contact</Fragment>
+	<article slot="page-content">
+		<h2>General Inquiries</h2>
+		<p>For general inquiries, please contact us at <a href=`mailto:${company.contactEmail}`>{company.contactEmail}</a>.</p>
+		<p>For privacy inquiries, please contact us at <a href=`mailto:${company.privacyEmail}`>{company.privacyEmail}</a>.</p>
+		<p>For other legal inquiries, please contact us at <a href=`mailto:${company.legalInquiryEmail}`>{company.legalInquiryEmail}</a>.</p>
+		<p>For more informal inquiries, you may contact us via our social media accounts or via <a href={social.discordURL}>Discord</a>.</p>
+		<h2>Social Media</h2>
+		<p>We are available on the following social media platforms:</p>
+		<ul>
+			<li><a href={social.youtubeURL}>YouTube</a></li>
+			<li><a href={social.twitchURL}>Twitch</a></li>
+			<li><a href={social.blueskyURL}>Bluesky</a></li>
+			<li><a href={social.discordURL}>Discord</a></li>
+		</ul>
+		<p>Follow us on social media to stay up-to-date on all of our latest happenings.</p>
+	</article>
+</PageLayout>

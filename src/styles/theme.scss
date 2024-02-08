@@ -1,0 +1,173 @@
+@mixin common-base {
+	--default-corner-radius: 24px;
+}
+
+@mixin light-theme-base {
+	@include common-base;
+
+	// Primary
+	--color-primary: #96490a;
+	--color-on-primary: #ffffff;
+	--color-primary-container: #ffdbc8;
+	--color-on-primary-container: #321300;
+	// Secondary
+	--color-secondary: #744F28;
+	--color-on-secondary: #ffffff;
+	--color-secondary-container: #ffdcbe;
+	--color-on-secondary-container: #2c1600;
+	// Tertiary / Accent
+	--color-tertiary: #b02b33;
+	--color-on-tertiary: #ffffff;
+	--color-tertiary-container: #ffdad8;
+	--color-on-tertiary-container: #410006;
+	// Error
+	--color-error: #ba1a1a;
+	--color-on-error: #ffffff;
+	--color-error-container: #ffdad6;
+	--color-on-error-container: #410002;
+	// Background
+	--color-background: #E0DBE3;
+	--color-on-background: #161913;
+	// Surface
+	--color-surface: #fffbff;
+	--color-on-surface: #201a17;
+	// Surface variant
+	--color-surface-variant: #f4ded3;
+	--color-on-surface-variant: #52443c;
+	// Outline
+	--color-outline: #85746b;
+	// Background color when hovering over some elements
+	--color-hover-background: #00000026;
+	--color-hover-post: #C8C3CDB3;
+}
+
+@mixin dark-theme-base {
+	@include common-base;
+	
+	// Primary
+	--color-primary: #ffb68a;
+	--color-on-primary: #522300;
+	--color-primary-container: #743500;
+	--color-on-primary-container: #ffdbc8;
+	// Secondary
+	--color-secondary: #ffb86f;
+	--color-on-secondary: #4a2800;
+	--color-secondary-container: #693c00;
+	--color-on-secondary-container: #ffdcbe;
+	// Tertiary / Accent
+	--color-tertiary: #f5be48;
+	--color-on-tertiary: #402d00;
+	--color-tertiary-container: #5d4200;
+	--color-on-tertiary-container: #ffdea3;
+	// Error
+	--color-error: #ffb4ab;
+	--color-on-error: #690005;
+	--color-error-container: #93000a;
+	--color-on-error-container: #ffdad6;
+	// Background
+	--color-background: #161913;
+	--color-on-background: #E0DBE3;
+	// Surface
+	--color-surface: #201a17;
+	--color-on-surface: #ece0da;
+	// Surface variant
+	--color-surface-variant: #52443c;
+	--color-on-surface-variant: #d7c2b8;
+	// Outline
+	--color-outline: #9f8d84;
+	// Background color when hovering over some elements
+	--color-hover-background: #FFFFFF26;
+	--color-hover-post: #282D23B3;
+}
+
+// Note: 'on' colors are usually text, but can be symbols or other things as well.
+// Surfaces are large elements that have their own background, or surface, color. Surfaces are also meant to be neutral.
+// Uses https://m3.material.io/theme-builder#/custom
+
+@mixin light-theme {
+	@include light-theme-base;
+
+	.theme-symbol {
+		.moon {
+			display: inline-block;
+			color: var(--color-on-surface-variant);
+		}
+
+		.moon-hovered {
+			display: none;
+		}
+
+		.sun {
+			display: none;
+		}
+
+		.sun-hovered {
+			display: none;
+		}
+	}
+
+	.theme-toggle:hover {
+		.moon {
+			display: none;
+		}
+
+		.moon-hovered {
+			display: inline-block;
+			color: var(--color-on-surface-variant);
+		}
+	}
+
+	.inverse-theme {
+		@include dark-theme-base;
+	}
+}
+
+@mixin dark-theme {
+	@include dark-theme-base;
+
+	.theme-symbol {
+		.moon {
+			display: none;
+		}
+
+		.moon-hovered {
+			display: none;
+		}
+
+		.sun {
+			display: inline-block;
+			color: var(--color-on-surface-variant);
+		}
+
+		.sun-hovered {
+			display: none;
+		}
+	}
+
+	.theme-toggle:hover {
+		.sun {
+			display: none;
+		}
+
+		.sun-hovered {
+			display: inline-block;
+			color: var(--color-on-surface-variant);
+		}
+	}
+
+	.inverse-theme {
+		@include light-theme-base;
+	}
+}
+
+:root { // Base Light Theme as the default
+	@include light-theme-base;
+}
+
+html[data-theme='light'] {
+	@include light-theme;
+}
+
+html[data-theme='dark'] {
+	@include dark-theme;
+}

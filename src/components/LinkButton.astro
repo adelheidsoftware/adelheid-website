@@ -1,0 +1,55 @@
+---
+interface Props {
+	href: string;
+	label: string;
+}
+
+const { href, label } = Astro.props;
+---
+
+<a href={href}>
+	<button>{label}</button>
+</a>
+
+<style lang="scss">
+button {
+	border: none;
+	display: inline-block;
+	border-radius: 24px;
+	padding: 0.5rem 2rem;
+
+	background: var(--color-on-surface-variant);
+	color: var(--color-surface);
+
+	text-transform: uppercase;
+	text-decoration: none;
+	text-align: center;
+	font-weight: 900;
+	font-size: 1.33rem;
+
+	transition: all 0.5s;
+
+	&:hover {
+		background: var(--color-tertiary) !important;
+		color: var(--color-on-tertiary) !important;
+		text-decoration: none;
+		cursor: pointer;
+	}
+
+}
+
+a {
+	border-radius: 24px;
+	text-decoration: none;
+
+	color: var(--color-surface);
+
+	transition: all 0.5s;
+
+	&:link, &:visited, &:hover, &:active {
+		color: var(--color-surface);
+		text-decoration: none;
+	}
+
+}
+</style>

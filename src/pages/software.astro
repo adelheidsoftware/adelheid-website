@@ -1,0 +1,17 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+
+import company from '../data/company.json';
+import social from '../data/social.json';
+---
+
+<PageLayout title='Software' description=`Software developed by ${company.name}.`>
+	<Fragment slot="page-header">Software</Fragment>
+	<article slot="page-content">
+		<p>We develop all kinds of software projects, typically related to games. These are tools we use and want to freely share with others. You can check some of them out on our <a href={social.githubURL}>GitHub</a>.</p>
+		<h2><a href=`${social.githubURL}/ohai`>Ohai</a></h2>
+		<p>Ohai is an open-source program that allows you to see all kinds of information about your hardware configuration, such as CPU and GPU information.</p>
+		<h2><a href=`${social.githubURL}/tojo`>Tojo</a></h2>
+		<p>Tojo is a Java GeoJSON and TopoJSON library.</p>
+	</article>
+</PageLayout>

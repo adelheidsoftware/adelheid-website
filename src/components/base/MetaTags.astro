@@ -1,0 +1,33 @@
+---
+interface Props {
+	title: string;
+	description: string;
+}
+
+const { title, description } = Astro.props;
+
+import site from '../../data/site.json';
+---
+<meta name="generator" content={Astro.generator} />
+<meta name="theme-color" content={site.themeColorHex}>
+
+<meta name="description" content={description} />
+
+<meta name="og:title" content={title} />
+<meta name="og:description" content={description} />
+<meta name="og:type" content="website" />
+<meta name="og:url" content={Astro.url} />
+<meta name="og:site_name" content={site.name} />
+
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:url" content={Astro.url} />
+
+<!-- Social Image -->
+
+<meta name="og:image" content=`${Astro.site}favicon.png` />
+<meta name="og:image:alt" content=`Page image for ${site.name}` />
+
+<meta name="twitter:image" content=`${Astro.site}favicon.png` />
+<meta name="twitter:image:alt" content=`Page image for ${site.name}` />

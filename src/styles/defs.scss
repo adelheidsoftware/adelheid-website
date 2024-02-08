@@ -1,0 +1,7 @@
+/* All of our non-theme variable definitions go here */
+
+@mixin root-defs {
+	--page-max-width: 70rem;
+	--feed-max-width: 50rem;
+	--page-gutter: 1.33rem;
+}

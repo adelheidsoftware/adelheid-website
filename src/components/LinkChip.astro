@@ -1,0 +1,77 @@
+---
+interface Props {
+	href: string;
+	label: string;
+	backgroundColor?: string;
+	foregroundColor?: string;
+	hoverBackgroundColor?: string;
+	hoverForegroundColor?: string;
+}
+
+const { href, label,
+backgroundColor = 'transparent',
+foregroundColor = 'var(--color-primary)',
+hoverBackgroundColor = 'var(--color-tertiary-container)',
+hoverForegroundColor = 'var(--color-on-tertiary-container)' } = Astro.props;
+---
+
+<a href={href}>
+	<button class="chip">{label}</button>
+</a>
+
+<style lang="scss" define:vars={{ backgroundColor, foregroundColor, hoverBackgroundColor, hoverForegroundColor }}>
+.chip {
+	border: 1px solid var(--color-outline);
+	border-radius: 8px;
+
+	height: 32px;
+
+	display: flex;
+	text-align: center;
+	line-height: 1;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+
+	padding: 8px 16px;
+	gap: 8px;
+	box-sizing: border-box;
+	cursor: pointer;
+	text-align: start;
+	text-decoration: none;
+	line-height: 20px;
+	font-size: 14px;
+	font-weight: 500;
+
+	transition: box-shadow 0.2s ease-in-out 0s;
+
+	background-color: var(--backgroundColor);
+	color: var(--foregroundColor);
+
+	&:hover {
+		cursor: pointer;
+		background-color: var(--hoverBackgroundColor);
+		color: var(--hoverForegroundColor);
+	}
+}
+
+a {
+	display: inline-block;
+	margin-right: 0.5em;
+	margin-top: 0.5em;
+	
+	text-decoration: none;
+	color: var(--foregroundColor);
+
+	&:link, &:visited, &:active {
+		text-decoration: none;
+		color: var(--foregroundColor);
+	}
+
+	&:hover {
+		color: var(--hoverForegroundColor);
+	}
+
+}
+</style>

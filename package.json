@@ -1,0 +1,29 @@
+{
+  "name": "adelheid-website",
+  "type": "module",
+  "version": "0.0.1",
+  "scripts": {
+    "dev": "node --trace-uncaught astro dev",
+    "start": "astro dev",
+    "build": "astro check && astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "@astrojs/check": "^0.4.1",
+    "@astrojs/mdx": "^2.1.1",
+    "@astrojs/rss": "^4.0.5",
+    "@fontsource-variable/noto-sans-display": "^5.0.19",
+    "@fontsource-variable/noto-sans-mono": "^5.0.18",
+    "@fontsource/noto-mono": "^5.0.7",
+    "@fontsource/noto-sans": "^5.0.18",
+    "@fontsource/noto-sans-display": "^5.0.18",
+    "@fontsource/noto-sans-math": "^5.0.8",
+    "@fontsource/noto-sans-mono": "^5.0.18",
+    "astro": "^4.3.5",
+    "typescript": "^5.3.3"
+  },
+  "devDependencies": {
+    "sass": "^1.70.0"
+  }
+}
