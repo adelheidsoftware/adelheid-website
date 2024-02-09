@@ -2,7 +2,6 @@
 import { getCollection } from "astro:content";
 import PageLayout from '../layouts/PageLayout.astro';
 import BlogPostSummary from '../components/BlogPostSummary.astro';
-import Separator from '../components/utility/Separator.astro';
 
 const posts = await getCollection("posts");
 //posts.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
