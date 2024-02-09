@@ -11,7 +11,7 @@ const navItems = [
 	<ul role='list'>
 		{navItems.map((item) =>  (
 			<li>
-				<a href={item.href} aria-current={Astro.url.pathname === item.href ? "page" : undefined}>{item.label}</a>
+				<a href={item.href} aria-current={(Astro.url.pathname.substring(0, Astro.url.pathname.lastIndexOf('.')) || Astro.url.pathname) === item.href ? "page" : undefined}>{item.label}</a>
 			</li>
 		))}
 	</ul>
