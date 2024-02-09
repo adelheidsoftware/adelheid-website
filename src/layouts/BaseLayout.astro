@@ -29,6 +29,7 @@ import '../styles/global.scss';
 		<MetaTags title={title} description={description}/>
 		<link rel="icon" type="image/png" href="/favicon.png" /> <!-- TODO: Fix SVG version and use that instead -->
 		<link rel="canonical" href={Astro.url} />
+		<link rel="sitemap" href="/sitemap-index.xml" />
 		<title>{title}</title>
 		<slot name="structured-data"/>
 		<script is:inline src='/scripts/theme-handler.js' />
