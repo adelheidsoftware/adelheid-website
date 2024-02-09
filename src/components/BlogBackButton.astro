@@ -1,0 +1,30 @@
+---
+interface Props {
+	href: string;
+	label: string;
+	svgString: string;
+}
+
+const { href, label, svgString } = Astro.props;
+---
+<a class="blog-back-button" href={href}>
+	<Fragment set:html={svgString}/>
+	<p>{label}</p>
+</a>
+
+<style lang="scss">
+.blog-back-button {
+	display: inline-flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+
+	p {
+		margin: 0;
+		padding: 0;
+		font-size: 1rem;
+	}
+
+}
+</style>
