@@ -10,9 +10,10 @@ const dateOptions: object = {
 	year: "numeric",
 	month: "long",
 	day: "numeric",
+	timeZone: "UTC" // Workaround to display proper time, but it works
 };
 
-const formattedDate = frontmatter.pubDate != undefined ? frontmatter.pubDate.toLocaleDateString("en-US", dateOptions) : undefined;
+const formattedDate = frontmatter.pubDate != undefined ? new Intl.DateTimeFormat("en-US", dateOptions).format(frontmatter.pubDate) : undefined;
 
 import company from '../data/company.json';
 ---

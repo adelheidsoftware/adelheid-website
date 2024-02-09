@@ -16,9 +16,10 @@ const dateOptions: object = {
 	year: "numeric",
 	month: "long",
 	day: "numeric",
+	timeZone: "UTC" // Workaround to display proper time, but it works
 };
 
-const formattedDate = date != undefined ? date.toLocaleDateString("en-US", dateOptions) : undefined;
+const formattedDate = date != undefined ? new Intl.DateTimeFormat("en-US", dateOptions).format(date) : undefined;
 
 // Word Count
 function countWordsRegex(str?: string): number {
