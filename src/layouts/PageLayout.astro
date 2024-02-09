@@ -1,5 +1,5 @@
 ---
-import BaseLayout from '../layouts/PageLayout.astro';
+import BaseLayout from '../layouts/BaseLayout.astro';
 
 import PageHeader from '../components/base/PageHeader.astro'
 
@@ -9,8 +9,6 @@ interface Props {
 	title: string;
 	description: string;
 }
-
-Astro.slots.has("page-header");
 
 const { title, description } = Astro.props;
 ---
