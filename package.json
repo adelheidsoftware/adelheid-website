@@ -12,6 +12,7 @@
   "dependencies": {
     "@astrojs/check": "^0.4.1",
     "@astrojs/rss": "^4.0.5",
+    "@astrojs/sitemap": "^3.0.5",
     "@fontsource-variable/noto-sans-display": "^5.0.19",
     "@fontsource-variable/noto-sans-mono": "^5.0.18",
     "@fontsource/noto-mono": "^5.0.7",
