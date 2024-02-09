@@ -6,25 +6,137 @@ import BlogBackButton from '../components/BlogBackButton.astro';
 
 const { frontmatter } = Astro.props;
 
+const dateOptions: object = {
+	year: "numeric",
+	month: "long",
+	day: "numeric",
+};
+
+const formattedDate = frontmatter.pubDate != undefined ? frontmatter.pubDate.toLocaleDateString("en-US", dateOptions) : undefined;
+
 import company from '../data/company.json';
 ---
 <BaseLayout title=`${frontmatter.title} | ${company.name} Blog` description={frontmatter.summary}>
 	<div class="wrapper">
-		<BlogBackButton href="/blog" label="Back to articles", svgString=`<svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 -960 960 960" width="16"><path d="m142-480 294 294q15 15 14.5 35T435-116q-15 15-35 15t-35-15L57-423q-12-12-18-27t-6-30q0-15 6-30t18-27l308-308q15-15 35.5-14.5T436-844q15 15 15 35t-15 35L142-480Z" fill="currentColor"/></svg>`/>
 		<article>
-			<h1>{frontmatter.title}</h1>
-			<p>{frontmatter.pubDate.toString().slice(0,10)}</p>
-			<p><em>{frontmatter.summary}</em></p>
-			<p>Written by {frontmatter.author}</p>
-			{!frontmatter.authorTitle ? '' : <b>{frontmatter.authorTitle}</b>}
-
-			<div class="tags">
-				{frontmatter.tags.map((tag: string) => (
-					<LinkChip href={`/tags/${tag}`} label={`#${tag}`}/>
-				))}
+			<div class="blog-header">
+				<BlogBackButton href="/blog" label="Back to articles", svgString=`<svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 -960 960 960" width="16"><path d="m382-480 294 294q15 15 14.5 35T675-116q-15 15-35 15t-35-15L297-423q-12-12-18-27t-6-30q0-15 6-30t18-27l308-308q15-15 35.5-14.5T676-844q15 15 15 35t-15 35L382-480Z" fill="currentColor"/></svg>`/>
+				<div class="blog-heading">
+					<h1 class="blog-title">{frontmatter.title}</h1>
+				</div>
+				<div class="blog-info">
+					<div class="blog-author-container">
+						<div class="blog-author">
+							<b>{frontmatter.author}</b>
+						</div>
+						{!frontmatter.authorTitle ? '' : 
+						<div class="blog-author-title">
+							<p>{frontmatter.authorTitle}</p>
+						</div>
+						}
+					</div>
+					<div class="blog-date">
+						<time>{formattedDate}</time>
+					</div>
+				</div>
+	
+				<div class="blog-tags">
+					<ul class="tags-list">
+						<li>
+							{frontmatter.tags.map((tag: string) => (
+								<LinkChip href={`/tags/${tag}`} label={`#${tag}`}/>
+							))}
+						</li>
+					</ul>
+				</div>
 			</div>
 
 			<slot />
 		</article>
 	</div>
 </BaseLayout>
+
+<style lang="scss">
+
+time {
+	display: block;
+	font-size: 1rem;
+	line-height: 1.5;
+	color: var(--color-on-surface);
+}
+
+ul {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.blog-header {
+	padding: 1.77rem 0;
+}
+
+.blog-heading {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	padding-top: 1.33rem;
+	h1 {
+		line-height: 1.5;
+	}
+
+	.blog-title {
+		margin: 0;
+		padding: 0;
+		font-size: 3.15rem;
+		max-width: 20ch !important;
+	}
+
+}
+
+.blog-info {
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	margin-top: 1.33rem;
+
+	.blog-author-container {
+		display: flex;
+		flex-direction: column;
+
+		p {
+			margin: 0;
+			padding: 0;
+		}
+
+		.blog-author {
+			font-size: 1.33rem;
+			margin: 0;
+			padding: 0;
+		}
+
+		.blog-author-title {
+			color: var(--color-on-surface-variant);
+			font-size: 1rem;
+			margin: 0;
+			padding: 0;
+		}
+	}
+
+	.blog-date {
+		padding-top: 1rem;
+		//text-align: right;
+	}
+}
+
+.blog-tags {
+	margin-top: 1.33rem;
+}
+
+.tags-list {
+	display: flex;
+	flex-wrap: wrap;
+	align-items: flex-start;
+	max-width: 80ch;
+}
+
+</style>
