@@ -25,28 +25,29 @@ const { title, description } = Astro.props;
 </BaseLayout>
 
 <style is:global lang="scss">
+	// All of these '!important' is a very hacky and temporary workaround to a styling order bug with Astro.
 	h1 {
-		font-size: 2.8rem;
-		font-weight: 900;
-		line-height: 1.1;
-		padding-bottom: 1rem;
+		font-size: 2.8rem !important;
+		font-weight: 900 !important;
+		line-height: 1.1 !important;
+		padding-bottom: 1rem !important;
 	}
 
 	h2 {
-		line-height: 1;
+		line-height: 1 !important;
 	}
 
 	p {
 		//max-width: 65ch;
-		font-size: 1.33rem;
+		font-size: 1.33rem !important;
 	}
 
 	ul:not([role='list']) {
 		li {
 			//max-width: 65ch;
-			font-size: 1.33rem;
-			line-height: 1.7;
-			padding-bottom: 1rem;
+			font-size: 1.33rem !important;
+			line-height: 1.7 !important;
+			padding-bottom: 1rem !important;
 		}
 	}
 </style>
