@@ -1,5 +1,5 @@
 # Adelheid Website
-Welcome to the repository for the [Adelheid website](https://adelheid.org/)! This website is statically-generated offline using [Astro](https://astro.build/).
+Welcome to the repository for the [Adelheid website](https://adelheid.org/)! This website is built using [Astro](https://astro.build/).
 
 ## Contributing
 
