@@ -3,17 +3,26 @@ import LinkButton from './LinkButton.astro';
 
 interface Props {
 	title: string;
-	body: string;
 	href: string;
 }
 
-const { title, body, href } = Astro.props;
+const { title, href } = Astro.props; // Temporarily removing body in order to handle text better on small screens manually
 ---
 
 <section class="cta">
 	<div class="wrapper">
 		<h2 class="heading">{title}</h2>
-		<p class="summary">{body}</p>
+		<div class="text">
+			<p class="text-small-screen">
+				We are seeking passionate and skilled individuals to join us on our journey. Initial compensation is based on a revenue sharing model, but we are committed to creating games in a realistic way, starting with games small in scope. This is an opportunity to be part of a startup from the ground up and share in the rewards of our collective efforts. If you share our passion and enthusiasm, we encourage you to join the community and get in touch!
+			</p>
+			<p class="left-text">
+				We are seeking passionate and skilled individuals to join us on our journey. Initial compensation is based on a revenue sharing model, but we are committed to creating games in a realistic way, starting with games small in scope.
+			</p>
+			<p class="right-text">
+				This is an opportunity to be part of a startup from the ground up and share in the rewards of our collective efforts. If you share our passion and enthusiasm, we encourage you to join the community and get in touch!
+			</p>
+		</div>
 		<div class="action">
 			<LinkButton label="Contact Us" href={href}/>
 		</div>
@@ -33,6 +42,65 @@ const { title, body, href } = Astro.props;
 
 	transition: all 0.5s;
 }
+
+.text {
+	display: inline-flex;
+	flex-direction: row;
+	justify-content: space-between;
+
+	p {
+		margin-top: 1.77rem;
+		margin-bottom: 2rem;
+		font-size: 1.33rem;
+	}
+}
+
+.left-text {
+	display: none;
+	visibility: hidden;
+
+	margin-left: 4rem;
+	margin-right: 1rem;
+	text-align: center;
+
+	@media (min-width: 45em) {
+		display: block;
+		visibility: visible;
+
+		margin-right: 3rem;
+		text-align: justify;
+	}
+}
+
+.right-text {
+	display: none;
+	visibility: hidden;
+
+	margin-left: 1rem;
+	margin-right: 4rem;
+
+	text-align: center;
+
+	@media (min-width: 45em) {
+		display: block;
+		visibility: visible;
+		margin-left: 3rem;
+		text-align: justify;
+	}
+}
+
+.text-small-screen {
+	display: block;
+	visibility: visible;
+
+	text-align: center;
+
+	@media (min-width: 45em) {
+		display: none;
+		visibility: hidden;
+	}
+}
+
 
 .heading {
 	font-size: 2.36rem;
@@ -56,11 +124,7 @@ const { title, body, href } = Astro.props;
 	margin-right: 4rem;
 
 	font-size: 1.33rem;
-	text-align: center;
-
-	@media (min-width: 37em) {
-		text-align: justify;
-	}
+	text-align: justify;
 }
 
 .action {
