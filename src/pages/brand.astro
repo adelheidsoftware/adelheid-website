@@ -12,6 +12,9 @@ import markWordmarkDark from '../assets/images/brand/mark-wordmark-dark-256.png'
 
 import banner from '../assets/images/brand/banner-320-132.png';
 
+import AudioPlayer from '../components/AudioPlayer.astro';
+import audio from '../assets/audio/adelheid.mp3';
+
 import company from '../data/company.json';
 ---
 
@@ -19,6 +22,15 @@ import company from '../data/company.json';
 	<Fragment slot="page-header">Branding</Fragment>
 	<article slot="page-content">
 		<p><strong>Do not use our branding to impersonate or misrepresent us.</strong> When in doubt about whether you can use our branding, <a href="/contact">contact us</a> for approval.</p>
+		<h2>How do I pronounce Adelheid?</h2>
+		<p>Press the audio icon below to hear the pronunciation.</p>
+		<span style="display: inline-block; vertical-align: middle; margin-top: 1rem;"><AudioPlayer audioSrc={audio}/></span>
+		<div style="display: inline-block; vertical-align: middle; margin-top: 1rem;">
+			<div style="display: flex; flex-direction: column;">
+				<span style="font-size: 1.802rem; font-weight: 600;">a·del·heid</span>
+				<span style="font-size: 1rem;">/ˈædəlhaɪd/</span>
+			</div>
+		</div>
 		<h2>Permitted Logos</h2>
 		<h3>Logo</h3>
 		<div class="grid-2col">
