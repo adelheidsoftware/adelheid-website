@@ -23,12 +23,12 @@ const { audioSrc } = Astro.props; // TODO: Add option to provide slowed down alt
 
 <script>
 	const button = document.getElementById('audio-player-button');
-	const audio = document.getElementById('audio-player-source');
-	const playIcon = button.querySelector('.play-icon'); 
-	const stopIcon = button.querySelector('.stop-icon');
+	const audio = document.getElementById('audio-player-source') as HTMLMediaElement;
+	const playIcon = button?.querySelector('.play-icon') as HTMLElement; 
+	const stopIcon = button?.querySelector('.stop-icon') as HTMLElement;
 
-	button.addEventListener('click', function() {
-	if (audio.paused || audio.ended) {
+	button?.addEventListener('click', function() {
+	if (audio?.paused || audio?.ended) {
 		playIcon.style.display = 'none';  // Hide play icon
 		stopIcon.style.display = 'inline'; // Show stop icon
 
