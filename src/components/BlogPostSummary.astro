@@ -15,8 +15,7 @@ const { href, title, summary, author, postText, date } = Astro.props;
 const dateOptions: object = {
 	year: "numeric",
 	month: "long",
-	day: "numeric",
-	timeZone: "UTC" // Workaround to display proper time, but it works
+	day: "numeric"
 };
 
 const formattedDate = date != undefined ? new Intl.DateTimeFormat("en-US", dateOptions).format(date) : undefined;

@@ -9,8 +9,7 @@ const { frontmatter } = Astro.props;
 const dateOptions: object = {
 	year: "numeric",
 	month: "long",
-	day: "numeric",
-	timeZone: "UTC" // Workaround to display proper time, but it works
+	day: "numeric"
 };
 
 const formattedDate = frontmatter.pubDate != undefined ? new Intl.DateTimeFormat("en-US", dateOptions).format(frontmatter.pubDate) : undefined;
