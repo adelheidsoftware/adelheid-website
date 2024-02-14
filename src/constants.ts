@@ -1,9 +1,6 @@
-export function getCanonicalURL(pathname: string, site: URL | undefined): string {
-	if(site == undefined) {
-		site = new URL("https://adelheid.org");
-	}
-	var canonicalURL = new URL(pathname, site);
-	var result = canonicalURL.toString().replace(/\/+$/, '');
+export function getCanonicalURL(pathname: string): string {
+	var canonicalURL = new URL(pathname, import.meta.env.SITE);
+	var result = canonicalURL.href.replace(/\/+$/, '');
 	if(result.includes('.html')) {
 		result = result.substring(0, result.lastIndexOf('.')) || result;
 	}
