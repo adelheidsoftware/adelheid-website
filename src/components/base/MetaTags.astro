@@ -6,6 +6,10 @@ interface Props {
 
 const { title, description } = Astro.props;
 
+import { getCanonicalURL } from '../../constants.ts';
+
+const canonicalURLString = getCanonicalURL(Astro.url.pathname, Astro.site);
+
 import site from '../../data/site.json';
 ---
 <meta name="generator" content={Astro.generator} />
@@ -16,13 +20,13 @@ import site from '../../data/site.json';
 <meta name="og:title" content={title} />
 <meta name="og:description" content={description} />
 <meta name="og:type" content="website" />
-<meta name="og:url" content={Astro.url} />
+<meta name="og:url" content={canonicalURLString} />
 <meta name="og:site_name" content={site.name} />
 
 <meta name="twitter:title" content={title} />
 <meta name="twitter:description" content={description} />
 <meta name="twitter:card" content="summary" />
-<meta name="twitter:url" content={Astro.url} />
+<meta name="twitter:url" content={canonicalURLString} />
 
 <!-- Social Image -->
 
