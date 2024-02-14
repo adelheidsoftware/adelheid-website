@@ -6,8 +6,6 @@ interface Props {
 
 const { title, description } = Astro.props;
 
-import { getCanonicalURL } from '../constants.ts';
-
 import MetaTags from '../components/base/MetaTags.astro';
 
 import Header from '../components/base/Header.astro';
@@ -22,7 +20,9 @@ import '@fontsource/noto-sans-math';
 
 import '../styles/global.scss';
 
-const canonicalURLString = getCanonicalURL(Astro.url.pathname, Astro.site);
+import { getCanonicalURL } from '../constants.ts';
+
+const canonicalURLString = getCanonicalURL(Astro.url.pathname);
 ---
 
 <!doctype html>

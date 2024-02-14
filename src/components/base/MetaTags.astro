@@ -6,11 +6,11 @@ interface Props {
 
 const { title, description } = Astro.props;
 
+import site from '../../data/site.json';
+
 import { getCanonicalURL } from '../../constants.ts';
 
-const canonicalURLString = getCanonicalURL(Astro.url.pathname, Astro.site);
-
-import site from '../../data/site.json';
+const canonicalURLString = getCanonicalURL(Astro.url.pathname);
 ---
 <meta name="generator" content={Astro.generator} />
 <meta name="theme-color" content={site.themeColorHex}>
