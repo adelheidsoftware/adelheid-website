@@ -3,6 +3,10 @@ export function getCanonicalURL(pathname: string, site: URL | undefined): string
 		site = new URL("https://adelheid.org");
 	}
 	var canonicalURL = new URL(pathname, site);
-    //const canonicalURL = new URL(pathname, site);
-    return canonicalURL.toString().replace(/\/+$/, '');
+	var result = canonicalURL.toString().replace(/\/+$/, '');
+	if(result.includes('.html')) {
+		result = result.substring(0, result.lastIndexOf('.')) || result;
+	}
+
+    return result;
 }
