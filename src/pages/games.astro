@@ -2,6 +2,7 @@
 import PageLayout from '../layouts/PageLayout.astro';
 
 import company from '../data/company.json';
+import posthaste from '../data/games/posthaste.json';
 ---
 
 <PageLayout title='Games' description=`Games developed by ${company.name}.`>
@@ -14,11 +15,11 @@ import company from '../data/company.json';
 			<br>
 			<b>Development status</b>: Active Development
 			<br>
-			<b>Release date</b>: Q2/Q3 2024
+			<b>Release date</b>: June/July 2024
 			<br>
-			<b>Steam page</b>: Coming late February 2024
+			<b>Store page</b>: <a href={posthaste.steamPageURL}>Steam Page (Wishlist today!)</a>
 			<br><br>
-			<b>Posthaste!</b> is a 2D arcade-style mail-sorting game.
+			<b>{posthaste.name}</b> is a 2D arcade-style sorting game following your journey as a novice postal worker. In this casual, light-hearted, and family-friendly game filled with humor, you must correctly sort mail into the appropriate boxes before time runs out, while dealing with the Postmaster and Post Inspector!
 		</p>
 		<h3>Ailuros</h3>
 		<p>
@@ -26,7 +27,7 @@ import company from '../data/company.json';
 			<br>
 			<b>Development status</b>: Planning
 			<br>
-			<b>Release date</b>: Q3/Q4 2024
+			<b>Release date</b>: TBA
 			<br>
 			<b>Steam page</b>: Coming late April / Early May 2024
 			<br><br>
