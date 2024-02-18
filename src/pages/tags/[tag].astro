@@ -31,7 +31,7 @@ import company from '../../data/company.json';
 		<ul>
 			{
 				posts.map((post) => (
-					<BlogPostSummary href={`/posts/${post.slug}`} title={post.data.title} summary={post.data.summary} date={post.data.pubDate} author={post.data.author} postText={post.body} />
+					<BlogPostSummary href={`/blog/${post.slug}`} title={post.data.title} summary={post.data.summary} date={post.data.pubDate} author={post.data.author} postText={post.body} />
 					<div class="post-separator"></div>
 				))
 				}

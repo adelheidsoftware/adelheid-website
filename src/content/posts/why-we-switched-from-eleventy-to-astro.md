@@ -7,7 +7,7 @@ authorTitle: 'Founder'
 tags: ['meta', 'web']
 ---
 
-Last year, I made a [blog post](/posts/why-we-built-our-website-using-eleventy) explaining why we used Eleventy to build our website. Now we've switched over to [Astro](https://astro.build/). What does Astro offer that convinced us to switch?
+Last year, I made a [blog post](/blog/why-we-built-our-website-using-eleventy) explaining why we used Eleventy to build our website. Now we've switched over to [Astro](https://astro.build/). What does Astro offer that convinced us to switch?
 
 ## Problems with Organization
 

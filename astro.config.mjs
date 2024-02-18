@@ -8,8 +8,12 @@ export default defineConfig({
   trailingSlash: 'never',
   redirects: {
 	'/assets/images/icons/favicons/favicon.png': {
-		status: 302,
+		status: 301,
 		destination: '/favicon.png'
+	},
+	'/posts/[...slug]': {
+		status: 301,
+		destination: '/blog/[...slug]'
 	}
   },
   build: {
