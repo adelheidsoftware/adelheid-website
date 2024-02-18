@@ -4,8 +4,15 @@ import { getCollection } from "astro:content";
 import PageLayout from '../layouts/PageLayout.astro';
 import BlogPostSummary from '../components/BlogPostSummary.astro';
 
+import Pagination from '../components/Pagination.astro';
+
+import { blogPaginationSize } from '../constants.ts';
+
 const posts = await getCollection("posts");
 posts.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+const postsToDisplay = posts.slice(0, blogPaginationSize);
+
+const pageCount: number = Math.ceil(posts.length / blogPaginationSize);
 
 import company from '../data/company.json';
 ---
@@ -17,13 +24,15 @@ import company from '../data/company.json';
 		<div>
 			<ul>
 				{
-					posts.map((post) => (
+					postsToDisplay.map((post) => (
 						<BlogPostSummary href={`/blog/${post.slug}`} title={post.data.title} summary={post.data.summary} date={post.data.pubDate} author={post.data.author} postText={post.body} />
 						<div class="post-separator"></div>
 					))
 				}
 			</ul>
+			<Pagination pageCount={pageCount} currentUrl="/blog" currentPageNumber={1} firstUrl="/blog" nextUrl="/blog/2"  lastUrl=`/blog/${pageCount}`/>
 		</div>
+
 	</article>
 </PageLayout>
 

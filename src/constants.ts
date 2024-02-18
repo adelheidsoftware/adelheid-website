@@ -7,3 +7,5 @@ export function getCanonicalURL(pathname: string): string {
 
     return result;
 }
+
+export const blogPaginationSize: number = 5;

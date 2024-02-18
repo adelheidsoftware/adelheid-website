@@ -1,0 +1,54 @@
+---
+import { getCollection } from "astro:content";
+
+import { blogPaginationSize } from '../../constants.ts';
+
+import PageLayout from '../../layouts/PageLayout.astro';
+import BlogPostSummary from '../../components/BlogPostSummary.astro';
+
+import Pagination from '../../components/Pagination.astro';
+
+const posts = await getCollection("posts");
+
+export async function getStaticPaths({ paginate }) {
+	const posts = await getCollection("posts");
+	const sortedPosts = posts.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+
+	return paginate(sortedPosts, { pageSize: blogPaginationSize });
+}
+
+const pageCount: number = Math.ceil(posts.length / blogPaginationSize);
+
+import company from '../../data/company.json';
+
+const { page } = Astro.props;
+---
+
+<PageLayout title=`Blog - Page ${page.currentPage}` description=`The official ${company.name} blog.`>
+	<Fragment slot="page-header">Blog</Fragment>
+	<article slot="page-content">
+		<div>
+			<ul>
+				{
+					page.data.map((post) => (
+						<BlogPostSummary href={`/blog/${post.slug}`} title={post.data.title} summary={post.data.summary} date={post.data.pubDate} author={post.data.author} postText={post.body} />
+						<div class="post-separator"></div>
+					))
+				}
+			</ul>
+			<Pagination pageCount={pageCount} currentUrl={page.url.current} currentPageNumber={page.currentPage} firstUrl={`/blog`} prevUrl={page.url.prev == "/blog/1" ? "/blog" : page.url.prev} nextUrl={page.url.next} lastUrl=`/blog/${pageCount}`/>
+		</div>
+	</article>
+</PageLayout>
+
+<style lang="scss">
+ul {
+	margin: 0;
+	padding: 0;
+}
+.post-separator {
+	border-bottom: 1px solid var(--color-outline);
+	margin-left: 16px;
+	margin-right: 16px;
+}
+</style>
