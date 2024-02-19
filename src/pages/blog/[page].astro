@@ -1,5 +1,7 @@
 ---
-import { getCollection } from "astro:content";
+import type { GetStaticPaths } from "astro";
+
+import { getCollection } from 'astro:content';
 
 import { blogPaginationSize } from '../../constants.ts';
 
@@ -8,20 +10,20 @@ import BlogPostSummary from '../../components/BlogPostSummary.astro';
 
 import Pagination from '../../components/Pagination.astro';
 
-const posts = await getCollection("posts");
-
-export async function getStaticPaths({ paginate }) {
+export const getStaticPaths = (async ({ paginate }) => {
 	const posts = await getCollection("posts");
 	const sortedPosts = posts.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
-
+	// Generate pages from our array of astronauts, with 2 to a page
 	return paginate(sortedPosts, { pageSize: blogPaginationSize });
-}
+}) satisfies GetStaticPaths;
+
+const { page } = Astro.props;
+
+const posts = await getCollection("posts");
 
 const pageCount: number = Math.ceil(posts.length / blogPaginationSize);
 
 import company from '../../data/company.json';
-
-const { page } = Astro.props;
 ---
 
 <PageLayout title=`Blog - Page ${page.currentPage}` description=`The official ${company.name} blog.`>
