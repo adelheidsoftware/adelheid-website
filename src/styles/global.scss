@@ -44,6 +44,25 @@ body, h1, h2, h3, h4, h5, h6, p, small {
 	line-height: 1.6; // Unsure
 }
 
+h1, h2, h3, h4, h5, h6 {
+	margin: 0;
+}
+
+h1, h2 {
+	padding-top: 1.75rem;
+	padding-bottom: 0.2rem;
+}
+
+h3, h4 {
+	padding-top: 1.2rem;
+	padding-bottom: 0.1rem;
+}
+
+h5, h6 {
+	padding-top: 0.75rem;
+	padding-bottom: 0;
+}
+
 body {
 	background: var(--color-background);
 	color: var(--color-on-background); // Text color
@@ -81,6 +100,8 @@ h6 {
 
 p {
 	font-size: 1rem;
+	margin-top: 8px;
+	margin-bottom: 8px;
 }
 
 small {
