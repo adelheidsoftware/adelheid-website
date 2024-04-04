@@ -36,8 +36,35 @@ html {
 	font-family: 'Noto Sans', sans-serif;
 }
 
-code { // TODO: Style code blocks and quote blocks to look better
+pre.astro-code {
+	font-family: 'Noto Sans Mono', monospace !important;
+	overflow: auto !important;
+	font-size: 95% !important;
+	line-height: 1.45 !important;
+	border-radius: 6px !important;
+	background-color: var(--color-surface-variant) !important;
+	color: var(--color-on-background) !important;
+	word-wrap: normal !important;
+	padding: 8px 16px !important;
+
+	code {
+		// Markdown is parsed into a pre+code block for multiline codeblocks.
+		font-size: 95% !important;
+		padding: 0 !important;
+		background-color: var(--color-surface-variant);
+		color: var(--color-on-background) !important;
+	}
+}
+
+code {
 	font-family: 'Noto Sans Mono', monospace;
+	padding: 0.2em 0.4em !important;
+	margin: 0 !important;
+	font-size: 95% !important;
+	white-space: break-spaces;
+	background-color: var(--color-surface-variant);
+	color: var(--color-on-background) !important;
+	border-radius: 6px;
 }
 
 body, h1, h2, h3, h4, h5, h6, p, small {
