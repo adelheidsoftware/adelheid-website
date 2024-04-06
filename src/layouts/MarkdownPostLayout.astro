@@ -18,7 +18,7 @@ import company from '../data/company.json';
 ---
 <BaseLayout title=`${frontmatter.title} | ${company.name} Blog` description={frontmatter.summary}>
 	<div class="wrapper">
-		<article>
+		<article class="blog">
 			<div class="blog-header">
 				<BlogBackButton href="/blog" label="Back to articles", svgString=`<svg xmlns="http://www.w3.org/2000/svg" height="16" viewBox="0 -960 960 960" width="16"><path d="m382-480 294 294q15 15 14.5 35T675-116q-15 15-35 15t-35-15L297-423q-12-12-18-27t-6-30q0-15 6-30t18-27l308-308q15-15 35.5-14.5T676-844q15 15 15 35t-15 35L382-480Z" fill="currentColor"/></svg>`/>
 				<div class="blog-heading">
@@ -65,31 +65,33 @@ time { // TODO: Fix time so it's in EST
 	color: var(--color-on-surface);
 }
 
-ul {
-	list-style: none;
-	margin: 0;
-	padding: 0;
-}
+// comment past this after done
 
-	h1, h2 {
-		padding-top: 1.2rem !important;
-		padding-bottom: 0.1rem !important;
-	}
+// ul {
+// 	list-style: none;
+// 	margin: 0;
+// 	padding: 0;
+// }
 
-	h3, h4 {
-		padding-top: 0.75rem !important;
-		padding-bottom: 0.05rem !important;
-	}
+// h1, h2 {
+// 	padding-top: 1.2rem !important;
+// 	padding-bottom: 0.1rem !important;
+// }
 
-	h5, h6 {
-		padding-top: 0.25rem !important;
-		padding-bottom: 0 !important;
-	}
+// h3, h4 {
+// 	padding-top: 0.75rem !important;
+// 	padding-bottom: 0.05rem !important;
+// }
 
-	p {
-		margin-top: 0.1rem !important;
-		margin-bottom: 0.25rem !important;
-	}
+// h5, h6 {
+// 	padding-top: 0.25rem !important;
+// 	padding-bottom: 0 !important;
+// }
+
+// p {
+// 	margin-top: 0.1rem !important;
+// 	margin-bottom: 0.25rem !important;
+// }
 
 .blog-header {
 	padding: 1.77rem 0;
@@ -157,6 +159,9 @@ ul {
 	flex-wrap: wrap;
 	align-items: flex-start;
 	max-width: 80ch;
+	list-style: none !important;
+	margin: 0 !important;
+	padding: 0 !important;
 }
 
 </style>
