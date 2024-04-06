@@ -11,7 +11,7 @@ I am not a web developer; I usually stick to desktop, mobile, and backend develo
 
 Let's take a look at the requirements that led me to [Eleventy](https://www.11ty.dev/).
 
-# Requirements
+## Requirements
 
 ### Hard Requirements
 
@@ -40,7 +40,7 @@ These requirements quickly discarded solutions such as WordPress, SquareSpace, S
 
 Let's take a look at the solutions I did end up attempting to use before finally settling on Eleventy.
 
-# Searching for a Solution
+## Searching for a Solution
 
 ### Google Sites
 
@@ -78,13 +78,13 @@ After [GamersNexus](https://gamersnexus.net/gn-extras/welcome-new-gamersnexus-we
 
 After messing around with it for a while, I came to the conclusion that a CMS is not what I needed, and that Drupal was far too heavy of a solution for me. Even though I did not end up using Drupal, I am glad that I tried out, because it led me straight to Eleventy.
 
-# The Solution: Eleventy
+## The Solution: Eleventy
 
 I came across Eleventy while trying to figure out how to deploy my Drupal website as a static website. I found [this post](https://chromatichq.com/insights/why-we-switched-to-eleventy-and-netlify/) and became keen to check it out. I created a brand new Eleventy project from scratch and followed [this tutorial](https://learneleventyfromscratch.com/) in order to get more familiar with it.
 
 I quickly realized that Eleventy is exactly what I had been looking for, and I found it very intuitive to use out of the gate. It is set up in a way that makes a lot of sense to me as a desktop, mobile, and backend developer. Eleventy is not very opinionated about what other tools you use or how you structure your website, and gives you the power to tell it what you want it to do.
 
-## Using Eleventy
+### Using Eleventy
 
 Eleventy is simple enough that just about anyone can get started very quickly. You set up the `.eleventy.js` file with most of the basic configuration, and then you can do just about anything from there. I started with basic HTML, CSS, and Javascript files, but eventually incorporated [Nunjucks](https://mozilla.github.io/nunjucks/) for templating so that I could re-use HTML, use build-time variables, and avoid duplicate code.
 
@@ -92,7 +92,7 @@ Using Nunjucks, I created a base layout that all other layouts inherit and set u
 
 The best part is that if you don't want to use Nunjucks or Sass, you don't have to! You're not forced to do things the 'Eleventy way' because there really is no 'Eleventy way'. You can use the solutions you like, or write your own solutions that solve the same problem and incorporate them into your project with minimal extra work.
 
-## Deploying the Website
+### Deploying the Website
 
 Once everything is set up and ready to go, you can build your website locally and upload it to your favorite hosting service or host it yourself. If your hosting service has direct support for frameworks, you may also be able to ship your website from a code repository.
 
@@ -100,7 +100,7 @@ In our case, we point Cloudflare Pages to [the project GitHub repository](https:
 
 There are alternatives you can also look into if you want, such as [Hugo](https://gohugo.io/) and [Angular](https://angular.io/); Eleventy is just the first one I found, and I found it very intuitive and easy to use.
 
-# Our Web Stack
+## Our Web Stack
 
 This is everything we use to build our website:
 
