@@ -6,6 +6,7 @@ import sitemap from "@astrojs/sitemap";
 export default defineConfig({
   site: 'https://adelheid.org',
   trailingSlash: 'never',
+  scopedStyleStrategy: 'attribute',
   redirects: {
 	'/assets/images/icons/favicons/favicon.png': {
 		status: 301,
