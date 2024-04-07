@@ -205,7 +205,9 @@ You can copy and paste these contents into the file:
 </VirtualHost>
 ```
 
-You can now save and exit. If using Vim, type `:wq!`.
+Make sure you modify the `ServerAdmin`, `ServerName,` and `ServerAlias` fields as necessary. If you do not have alternative URLs, you can delete the `ServerAlias` line entirely.
+
+Once you're done, you can save and exit. If using Vim, type `:wq!`.
 
 ### Configure MediaWiki
 
