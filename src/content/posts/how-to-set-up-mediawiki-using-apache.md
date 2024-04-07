@@ -26,7 +26,7 @@ We'll be making the following assumptions:
 
 First, ensure that you allow HTTP and HTTPS traffic on the device you'll be hosting the wiki on. This could be as simple as checking two boxes when creating your VM, or it could mean portforwarding ports 80 (TCP) and 443 (TCP) for traffic running to your host machine.
 
-Next, you'll want to make sure your domain/subdomains are pointing to the server you'll be hosting the wiki on. You can do this with an `A` record if using IPv4, or an `AAAA` record if using IPv6.
+Next, you'll want to make sure your domain/subdomains are pointing to the server you'll be hosting the wiki on. You can do this with `A` records if using IPv4, or `AAAA` records if using IPv6.
 
 After that, open a terminal or SSH into your server. If you are using a different package manager, then modify the commands below as necessary.
 
