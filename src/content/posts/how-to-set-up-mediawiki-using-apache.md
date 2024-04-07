@@ -331,7 +331,7 @@ Step 2. Create the database with your chosen name:
 Step 3. Create a database user called `newwikiadmin` and select a password:  
 `CREATE USER 'newwikiadmin'@'localhost' IDENTIFIED BY 'newpassword';`
 
-Step 4. Grant `sysadmin` full database access:  
+Step 4. Grant `newwikiadmin` full access to the `newwiki` database:  
 `GRANT ALL PRIVILEGES ON newwiki.* TO 'newwikiadmin'@'localhost' IDENTIFIED BY 'newpassword' WITH GRANT OPTION;`
 
 Step 5. Next, you'll need to grant your `newwikiadmin` database user access to the `user`, `user_properties`, and `actor` tables.  
