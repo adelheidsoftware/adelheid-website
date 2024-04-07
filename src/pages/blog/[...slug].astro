@@ -167,10 +167,10 @@ h1, h2, h3, h4, h5, h6, p {
 
 .blog ul {
 	list-style: none;
+	list-style-type: disc;
 	margin: 0;
 	padding: 0;
 	margin-left: 1.5rem;
-	list-style-type: disc;
 }
 
 .blog li {
@@ -180,6 +180,14 @@ h1, h2, h3, h4, h5, h6, p {
 	font: inherit;
 	line-height: 1.5;
 }
+
+.blog ul.contains-task-list {
+	list-style: none;
+	list-style-type: none;
+	margin-left: 0;
+}
+
+.blog li.task-list-item {}
 
 .blog figure {
 	margin-top: 1.25rem;
