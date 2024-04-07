@@ -396,7 +396,7 @@ After that, create a new `LocalSettings.php` file in your MediaWiki directory an
 <?php
 $wikis = [
     'example.com' => 'mediawiki',
-    'one.example.org' => 'newwiki',
+    'one.example.com' => 'newwiki',
 ];
 if ( defined( 'MW_DB' ) ) {
     // Automatically set from --wiki option to maintenance scripts
