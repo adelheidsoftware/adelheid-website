@@ -336,9 +336,9 @@ Step 4. Grant `newwikiadmin` full access to the `newwiki` database:
 
 Step 5. Next, you'll need to grant your `newwikiadmin` database user access to the `user`, `user_properties`, and `actor` tables.  
 ```
-GRANT SELECT, UPDATE on mediawiki.user to 'newwikiadmin'@'localhost';
-GRANT SELECT, UPDATE on mediawiki.user_properties to 'newwikiadmin'@'localhost';
-GRANT SELECT, UPDATE on mediawiki.actor to 'newwikiadmin'@'localhost';
+GRANT SELECT, UPDATE, INSERT on mediawiki.user to 'newwikiadmin'@'localhost';
+GRANT SELECT, UPDATE, INSERT on mediawiki.user_properties to 'newwikiadmin'@'localhost';
+GRANT SELECT, UPDATE, INSERT on mediawiki.actor to 'newwikiadmin'@'localhost';
 ```
 
 Repeat steps 2 through 5 for each wiki you want to create, creating a separate user for each database, each with a unique password.
