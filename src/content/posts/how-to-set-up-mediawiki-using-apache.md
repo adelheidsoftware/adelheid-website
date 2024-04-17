@@ -440,9 +440,20 @@ Next, press the button that says that you have root access to the server config,
 
 Finally, enter the article format you'd like to have. For example, we want our wiki URLs to look like `https://mywiki.com/w/Example`, so we'd enter `/w/$1` into the Article Path input box. Once you've done that, hit "submit".
 
-Next, edit `LocalSettings.php` and put `$wgScriptPath` and `$wgArticlePath` as mentioned. If you created a family of wikis and want a different URL format for each, then modify each `LocalSettings_<wikiID>.php` file independently instead.
+Next, edit `LocalSettings.php` and put `$wgScriptPath` and `$wgArticlePath` as mentioned, and add `$wgUsePathInfo` and set it to `true`. If you created a family of wikis and want a different URL format for each, then modify each `LocalSettings_<wikiID>.php` file independently instead. Keep in mind this may also cause your rewrite rules to be much more complex.
 
 If you want to change your root domain so that `https://mywiki.com/index.php/Main_Page` is just `https://mywiki.com/`, additionally add `$wgMainPageIsDomainRoot = true;` to the file.
+
+Your `LocalSettings.php` file will now contain something like this:  
+```
+...
+// Add any settings that should apply to all wikis below this line
+
+$wgScriptPath = "";
+$wgArticlePath = "/w/$1";
+$wgUsePathInfo = true;
+$wgMainPageIsDomainRoot = true;
+```
 
 Save and quit when you are done.
 
@@ -497,6 +508,59 @@ You can now save and quit.
 
 Restart the Apache2 service:  
 `sudo systemctl restart apache2.service`
+
+Verify that your main page is just your desired domain name, and that articles have short URLs as you've set them up. If everything seems to be in order, then you're ready for the next step.
+
+### Action Pages
+
+You might notice that when you do an action, such as edit, delete, or check a page's history, the URLs are not short. There's an easy fix for that: `$wgActionPaths`.
+
+Add the following to your `LocalSettings.php`:  
+```
+...
+// Adjust action path URLs
+$actions = [
+	'delete',
+	'edit',
+	'history',
+	'protect',
+	'unprotect',
+	'purge',
+	'render',
+	'submit',
+	'watch',
+	'unwatch',
+	'revert',
+	'rollback',
+	'markpatrolled',
+	'info',
+	'credits'
+];
+
+foreach ($actions as $action) {
+	$wgActionPaths[$action] = "${wgArticlePath}?action=$action";
+}
+```
+
+You can edit the list of actions to include whatever actions you like, but that should cover most of them. You can also edit the URL to whatever you like.
+
+## Diff Pages
+
+Lastly, you might notice that `diff` pages are quite ugly. Certain pages are a little more difficult to get right, and may require you to create a custom function or work with MediaWiki hooks. In our case, you can add the following to your `LocalSettings.php`:  
+```
+function prettyDiffURLs($title, &$url, $query) {
+	if( preg_match('/diff=(\w+)&oldid=(\w+)/', $query, $matches) ) {
+		$dbkey = wfUrlencode($title->getPrefixedDBkey());
+		$url = "/w/$dbkey?$matches[0]";
+	}
+
+	return true;
+}
+$wgHooks['GetLocalURL::Internal'][] = 'prettyDiffURLs';
+```
+Again, modify this to match whatever URL schema you prefer.
+
+Note that this doesn't seem to affect diff pages viewed via the Revision Slider extension, but it will work for diffs viewed normally, such as from the watchlist page.
 
 That's it!
 
