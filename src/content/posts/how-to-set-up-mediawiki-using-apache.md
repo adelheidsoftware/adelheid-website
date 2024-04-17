@@ -467,7 +467,14 @@ Add the rewrite rules as provided by the linked website. For us, our configurati
   CustomLog ${APACHE_LOG_DIR}/access.log combined
 
   RewriteEngine On
+
   RewriteRule ^/?w(/.*)?$ %{DOCUMENT_ROOT}/index.php [L]
+
+  RewriteCond %{REQUEST_URI} !^/rest\.php
+  RewriteCond %{REQUEST_URI} !^/api\.php
+  RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} !-f
+  RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} !-d
+  RewriteRule ^(.*)$ %{DOCUMENT_ROOT}/index.php [L]
 
   RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} !-f
   RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} !-d
