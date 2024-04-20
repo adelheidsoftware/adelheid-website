@@ -3,7 +3,7 @@ title: 'How to Set Up MediaWiki Using Apache'
 pubDate: 2024-04-07T19:07:00.000-05:00
 summary: 'Learn about how to set up your own wiki or family of wikis!'
 author: 'Aaron Yoder'
-authorTitle: 'Founder'
+authorTitle: ''
 tags: ['tutorial', 'web', 'cloud', 'mediawiki']
 ---
 
