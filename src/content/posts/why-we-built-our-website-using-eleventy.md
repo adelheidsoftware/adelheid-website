@@ -3,7 +3,7 @@ title: 'Why We Built Our Website Using Eleventy'
 pubDate: 2023-11-25T15:30:00.000-05:00
 summary: 'Learn about why we decided to use Eleventy to build our website.'
 author: 'Aaron Yoder'
-authorTitle: 'Founder'
+authorTitle: ''
 tags: ['meta', 'web']
 ---
 
