@@ -6,25 +6,19 @@ interface Props {
 	href: string;
 }
 
-const { title, href } = Astro.props; // Temporarily removing body in order to handle text better on small screens manually
+const { title, href } = Astro.props;
 ---
 
 <section class="cta">
 	<div class="wrapper">
 		<h2 class="heading">{title}</h2>
-		<div class="text">
-			<p class="text-small-screen">
-				We post about our games, software, and experiences on our blog. If you're interested in following along on our journey, be sure to follow us on social media in order to be informed about our most recent posts! If you're interested in getting involved, be sure to join our Discord. We love engaging with our community, and we'd love to see it get bigger. We are also very open to accepting talented individuals on-board should you be interested!
-			</p>
-			<p class="left-text">
-				We post about our games, software, and experiences on our blog. If you're interested in following along on our journey, be sure to follow us on social media in order to be informed about our most recent posts!
-			</p>
-			<p class="right-text">
-				If you're interested in getting involved, be sure to join our Discord. We love engaging with our community, and we'd love to see it get bigger. We are also very open to accepting talented individuals on-board should you be interested!
+		<div class="essay">
+			<p>
+				We post about our games, software, and experiences on our blog and via our newsletter. If you're interested in following along on our journey, also be sure to <a href="/contact">follow us on social media</a> in order to be rapidly informed about our most recent posts!
 			</p>
 		</div>
 		<div class="action">
-			<LinkButton label="Contact" href={href}/>
+			<LinkButton label="Subscribe" href={href}/>
 		</div>
 	</div>
 </section>
@@ -43,67 +37,8 @@ const { title, href } = Astro.props; // Temporarily removing body in order to ha
 	transition: all 0.5s;
 }
 
-.text {
-	display: inline-flex;
-	flex-direction: row;
-	justify-content: space-between;
-
-	p {
-		margin-top: 1.77rem;
-		margin-bottom: 2rem;
-		font-size: 1.33rem;
-	}
-}
-
-.left-text {
-	display: none;
-	visibility: hidden;
-
-	margin-left: 4rem;
-	margin-right: 1rem;
-	text-align: center;
-
-	@media (min-width: 45em) {
-		display: block;
-		visibility: visible;
-
-		margin-right: 3rem;
-		text-align: justify;
-	}
-}
-
-.right-text {
-	display: none;
-	visibility: hidden;
-
-	margin-left: 1rem;
-	margin-right: 4rem;
-
-	text-align: center;
-
-	@media (min-width: 45em) {
-		display: block;
-		visibility: visible;
-		margin-left: 3rem;
-		text-align: justify;
-	}
-}
-
-.text-small-screen {
-	display: block;
-	visibility: visible;
-
-	text-align: center;
-
-	@media (min-width: 45em) {
-		display: none;
-		visibility: hidden;
-	}
-}
-
-
 .heading {
-	font-size: 2.36rem;
+	font-size: 2.5rem;
 	line-height: 1.3;
 	font-weight: 900;
 	text-align: center;
@@ -113,18 +48,19 @@ const { title, href } = Astro.props; // Temporarily removing body in order to ha
 	}
 
 	@media (min-width: 56em) {
-		font-size: 4.2rem;
+		font-size: 4rem;
 	}
 }
 
-.summary {
-	margin-top: 1.77rem;
-	margin-bottom: 2rem;
-	margin-left: 4rem;
-	margin-right: 4rem;
+.essay {
+	display: flex;
+	justify-content: center;
 
-	font-size: 1.33rem;
-	text-align: justify;
+	p {
+		font-size: 1.33rem;
+		text-align: justify;
+		max-width: 72ch;
+	}
 }
 
 .action {

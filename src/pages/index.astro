@@ -5,6 +5,7 @@ import PageHeader from '../components/base/PageHeader.astro';
 import CallToAction from '../components/CallToAction.astro';
 
 import company from '../data/company.json';
+import social from '../data/social.json';
 ---
 
 <BaseLayout title="Adelheid Software" description="An indie studio that develops games and game-related software solutions.">
@@ -17,7 +18,7 @@ import company from '../data/company.json';
 			We also have a technical blog where we talk about our experiences and share our knowledge and expertise.
 		</p>
 	</div>
-	<CallToAction title="Wanna get involved? Contact us!" href="/contact"/>
+	<CallToAction title="Subscribe to our newsletter!" href={social.newsletterURL}/>
 </BaseLayout>
 
 <style lang="scss">
