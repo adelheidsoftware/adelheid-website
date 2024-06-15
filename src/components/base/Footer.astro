@@ -165,6 +165,7 @@ footer {
 		.social-link {
 			margin: 0 10px 10px 0;
 			display: flex;
+			transition: 200ms ease-out;
 
 			svg {
 				color: var(--color-on-background) !important;
@@ -178,7 +179,11 @@ footer {
 			svg:hover {
 				color: var(--color-tertiary) !important;
 			}
+		}
 
+		.social-link:hover {
+			transform: translateZ(0);
+			transform: scale(1.2);
 		}
 	}
 
