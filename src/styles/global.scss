@@ -162,3 +162,19 @@ a:active {
 	border-radius: 12%; /* Adjust the value for desired roundness */
 	overflow: hidden; /* This is important to clip the overflowing content */
 }
+
+.cat {
+	cursor: pointer;
+	-webkit-touch-callout: none;
+	-webkit-user-select: none;
+	-khtml-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+
+	transition: 200ms ease-out;
+}
+
+.cat:active {
+	transform: scaleY(0.5);
+}
