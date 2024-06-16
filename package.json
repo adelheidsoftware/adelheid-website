@@ -10,9 +10,9 @@
     "astro": "astro"
   },
   "dependencies": {
-    "@astrojs/check": "^0.4.1",
-    "@astrojs/rss": "^4.0.5",
-    "@astrojs/sitemap": "^3.0.5",
+    "@astrojs/check": "^0.7.0",
+    "@astrojs/rss": "^4.0.6",
+    "@astrojs/sitemap": "^3.1.5",
     "@fontsource-variable/noto-sans-display": "^5.0.19",
     "@fontsource-variable/noto-sans-mono": "^5.0.18",
     "@fontsource/noto-mono": "^5.0.7",
@@ -20,7 +20,7 @@
     "@fontsource/noto-sans-display": "^5.0.18",
     "@fontsource/noto-sans-math": "^5.0.8",
     "@fontsource/noto-sans-mono": "^5.0.18",
-    "astro": "^4.3.5",
+    "astro": "^4.10.2",
     "typescript": "^5.3.3"
   },
   "devDependencies": {
