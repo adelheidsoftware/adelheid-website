@@ -1,0 +1,29 @@
+---
+import PageLayout from '../../layouts/PageLayout.astro';
+
+import company from '../../data/company.json';
+import postbound from '../../data/games/postbound.json';
+---
+
+<PageLayout title='Postbound!' description=`A game developed by ${company.name}.`>
+	<Fragment slot="page-header">Postbound!</Fragment>
+	<article slot="page-content">
+		<p>
+			<b>Framework</b>: <a href="https://godotengine.org">Godot Engine</a>
+			<br>
+			<b>Development status</b>: Active Development
+			<br>
+			<b>Release date</b>: July 22, 2024
+			<br>
+			<b>Store page</b>: <a href={postbound.steamPageURL}>Steam Page</a> (Wishlist today!)
+			<br><br>
+			<b>{postbound.name}</b> is a 2D arcade-style mail sorting game following your journey as a novice postal worker. In this casual, light-hearted, and family-friendly game filled with humor, you must correctly sort mail into the appropriate boxes before time runs out, while dealing with the Postmaster and Post Inspector!
+		</p>
+	</article>
+</PageLayout>
+
+<style lang="scss">
+p {
+	margin-top: 0.5rem;
+}
+</style>

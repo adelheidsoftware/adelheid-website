@@ -1,0 +1,125 @@
+---
+
+import { Image } from 'astro:assets';
+
+import missingImage from '../assets/images/games/missing-capsule.png'
+
+interface Props {
+	href: string;
+	title: string;
+	body: string;
+	image?: ImageMetadata;
+}
+
+const { href, title, body, image = missingImage } = Astro.props;
+---
+<li class="game-card">
+	<a href={href}>
+		<div class="capsule-container">
+			<Image class="capsule-image" src={image} alt="Test" />
+		</div>
+		<div class="info-container">
+			<h3>{title}</h3>
+			<p>{body}</p>
+		</div>
+	</a>
+</li>
+
+<style lang="scss">
+
+.game-card {
+	list-style: none;
+	display: flex;
+	flex-direction: column;
+
+	width: 370px;
+	height: 265px;
+	max-width: 370px;
+	max-height: 265px;
+
+	overflow: hidden;
+	border-radius: 8px;
+
+	margin: 8px;
+	background-color: var(--color-surface-variant);
+	color: var(--color-on-surface-variant);
+
+	&:hover {
+		cursor: pointer;
+
+		.capsule-image {
+			transform: scale(1.08);
+		}
+
+		.info-container > h3 {
+			width: 100%;
+			max-width: fit-content;
+
+			&:before {
+				content: '';
+				display: block;
+				width: 100%;
+				height: 0.2rem;
+				position: absolute;
+				top: 85%;
+				left: 0;
+				margin-top: 0.1rem;
+				border-radius: 16px;
+				background: var(--color-on-tertiary-container);
+			}
+		}
+	}
+}
+
+.game-card > a {
+	text-decoration: none;
+	color: var(--color-on-surface);
+
+	&:link, &:visited, &:hover, &:active {
+		text-decoration: none;
+	}
+}
+
+.capsule-container {
+	width: 370px;
+	height: 172px;
+	max-width: 370px;
+	max-height: 172px;
+
+	overflow: hidden;
+}
+
+.capsule-image {
+	width: 100%;
+	height: 100%;
+	transition: transform 450ms cubic-bezier(0.1, 0.85, 0.7, 0.85);
+}
+
+.info-container {
+	margin: 2px 8px;
+	flex-grow: 1;
+
+	h3 {
+		margin: 0;
+		padding: 0;
+		font-size: 1.5rem;
+		white-space: nowrap;
+
+		text-decoration: none;
+		display: block;
+		position: relative;
+		width: 0%;
+		max-width: fit-content;
+
+		transition: width 1.5s cubic-bezier(0.25, 1, 0.30, 1);
+	}
+
+	p {
+		margin: 0;
+		padding: 0;
+		font-size: 0.8rem !important;
+		color: var(--color-on-tertiary-container);
+	}
+}
+
+</style>

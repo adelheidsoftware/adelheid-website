@@ -1,6 +1,10 @@
 ---
 import PageLayout from '../layouts/PageLayout.astro';
 
+import GameCard from '../components/GameCard.astro';
+
+import postboundImage from '../assets/images/games/postbound/capsule.png';
+
 import company from '../data/company.json';
 import postbound from '../data/games/postbound.json';
 ---
@@ -9,24 +13,34 @@ import postbound from '../data/games/postbound.json';
 	<Fragment slot="page-header">Games</Fragment>
 	<article slot="page-content">
 		<h2>Upcoming</h2>
-		<h3>Postbound!</h3>
-		<p>
-			<b>Framework</b>: <a href="https://godotengine.org">Godot Engine</a>
-			<br>
-			<b>Development status</b>: Active Development
-			<br>
-			<b>Release date</b>: July 22, 2024
-			<br>
-			<b>Store page</b>: <a href={postbound.steamPageURL}>Steam Page</a> (Wishlist today!)
-			<br><br>
-			<b>{postbound.name}</b> is a 2D arcade-style sorting game following your journey as a novice postal worker. In this casual, light-hearted, and family-friendly game filled with humor, you must correctly sort mail into the appropriate boxes before time runs out, while dealing with the Postmaster and Post Inspector!
-		</p>
+		<div class="game-grid">
+			<GameCard href="/games/postbound" title="Postbound!" image={postboundImage} body=`${postbound.name} is a 2D arcade-style mail sorting game following your journey as a novice postal worker.`/>
+			<GameCard href="" title="Project Bastet" body=`Still under heavy development. Check back later! 🐈‍⬛`/>
+		</div>
 		<!--<h2>Released</h2>
 		<p><i>Nothing yet.</i></p>-->
 	</article>
 </PageLayout>
 
 <style lang="scss">
+.game-grid {
+	display: grid;
+	grid-template-columns: repeat(1, 1fr);
+}
+
+@media (min-width: 772px) {
+	.game-grid {
+		grid-template-columns: repeat(2, 1fr);
+	}
+}
+
+@media (min-width: 1142px) {
+	.game-grid {
+		grid-template-columns: repeat(3, 1fr);
+	}
+}
+
+
 p {
 	margin-top: 0.5rem;
 }
