@@ -18,7 +18,9 @@ We use [GitHub Projects](https://docs.github.com/en/issues/planning-and-tracking
 
 ### Productivity & Collaboration
 
-We use [Google Workspace](https://workspace.google.com/) for file management, managing external contacts, creating internal documentation, and other internal business-related needs. We use [Discord](https://discord.com/) for internal day-to-day communication.
+We use [Google Workspace](https://workspace.google.com/) for file management, managing external contacts, creating internal documentation, and other internal business-related needs.
+
+We use [Discord](https://discord.com/) for internal day-to-day communication.
 
 ## Game Tooling
 
