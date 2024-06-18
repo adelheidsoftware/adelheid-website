@@ -1,0 +1,11 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+
+import {Content as ToolingMarkdown} from '../assets/markdown/tooling.md';
+
+import company from '../data/company.json';
+---
+
+<PageLayout title='Tooling' description=`The tooling we use at ${company.name}.`>
+	<ToolingMarkdown slot="page-content"/>
+</PageLayout>
