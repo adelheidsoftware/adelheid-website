@@ -26,7 +26,7 @@
 	--color-error-container: #ffdad6;
 	--color-on-error-container: #410002;
 	// Background
-	--color-background: #E0DBE3;
+	--color-background: #E0DBE3; // hsl(278deg, 12%, 87%)
 	--color-on-background: #161913;
 	// Surface
 	--color-surface: #fffbff;
@@ -39,6 +39,17 @@
 	// Background color when hovering over some elements
 	--color-hover-background: #00000026;
 	--color-hover-post: #C8C3CDB3;
+
+	// Shadows
+	// Surface shadow uses background color with lightness set to 60%
+	--shadow-surface:	0 1px 1px hsla(278deg, 12%, 60%, 0.04),
+						0 2px 2px hsla(278deg, 12%, 60%, 0.06),
+						0 4px 4px hsla(278deg, 12%, 60%, 0.08);
+	
+	--shadow-surface-hover:	0 1px 1px hsla(278deg, 12%, 60%, 0.16),
+							0 2px 2px hsla(278deg, 12%, 60%, 0.18),
+							0 4px 4px hsla(278deg, 12%, 60%, 0.20);
+
 }
 
 @mixin dark-theme-base {
@@ -65,7 +76,7 @@
 	--color-error-container: #93000a;
 	--color-on-error-container: #ffdad6;
 	// Background
-	--color-background: #161913;
+	--color-background: #161913; // hsl(90, 14%, 9%)
 	--color-on-background: #E0DBE3;
 	// Surface
 	--color-surface: #201a17;
@@ -78,6 +89,16 @@
 	// Background color when hovering over some elements
 	--color-hover-background: #FFFFFF26;
 	--color-hover-post: #282D23B3;
+
+	// Shadows
+	// Surface shadow uses background color with lightness set to 30%
+	--shadow-surface:	0 1px 1px hsla(90deg, 14%, 30%, 0.04),
+						0 2px 2px hsla(90deg, 14%, 30%, 0.06),
+						0 4px 4px hsla(90deg, 14%, 30%, 0.08);
+	
+	--shadow-surface-hover:	0 1px 1px hsla(90deg, 14%, 30%, 0.16),
+							0 2px 2px hsla(90deg, 14%, 30%, 0.18),
+							0 4px 4px hsla(90deg, 14%, 30%, 0.20);
 }
 
 // Note: 'on' colors are usually text, but can be symbols or other things as well.
