@@ -103,6 +103,23 @@ small {
 	font-size: 0.889rem;
 }
 
+table, th, td {
+	border: 1px solid var(--color-on-background);
+}
+
+th {
+	padding: 8px;
+	font-style: bold;
+}
+
+td {
+	padding: 8px;
+}
+
+table {
+	border-collapse: collapse;
+}
+
 /* Hyperlink/Anchor Global Styles */
 
 a:not([class]) {
