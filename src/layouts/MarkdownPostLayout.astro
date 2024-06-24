@@ -138,3 +138,73 @@ time { // TODO: Fix time so it's in EST
 }
 
 </style>
+
+<script>
+	const sheet = new CSSStyleSheet();
+	sheet.replaceSync(`
+.link-icon {
+	text-decoration: none;
+	display: inline-flex;
+	vertical-align: middle;
+	cursor: pointer;
+	height: 100%;
+
+	color: var(--color-primary);
+	padding-left: 4px;
+
+	&:hover {
+		color: var(--color-tertiary);
+	}
+}
+
+.link-clicked-icon {
+	text-decoration: none;
+	display: inline-flex;
+	vertical-align: middle;
+	height: 100%;
+
+	color: #1a7f37;
+	padding-left: 4px;
+}
+	`);
+	document.adoptedStyleSheets.push(sheet);
+
+	const linkSvg = `<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M280-280q-83 0-141.5-58.5T80-480q0-83 58.5-141.5T280-680h120q17 0 28.5 11.5T440-640q0 17-11.5 28.5T400-600H280q-50 0-85 35t-35 85q0 50 35 85t85 35h120q17 0 28.5 11.5T440-320q0 17-11.5 28.5T400-280H280Zm80-160q-17 0-28.5-11.5T320-480q0-17 11.5-28.5T360-520h240q17 0 28.5 11.5T640-480q0 17-11.5 28.5T600-440H360Zm200 160q-17 0-28.5-11.5T520-320q0-17 11.5-28.5T560-360h120q50 0 85-35t35-85q0-50-35-85t-85-35H560q-17 0-28.5-11.5T520-640q0-17 11.5-28.5T560-680h120q83 0 141.5 58.5T880-480q0 83-58.5 141.5T680-280H560Z"/></svg>`;
+
+	const linkClickedSvg = `<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="m382-354 339-339q12-12 28-12t28 12q12 12 12 28.5T777-636L410-268q-12 12-28 12t-28-12L182-440q-12-12-11.5-28.5T183-497q12-12 28.5-12t28.5 12l142 143Z"/></svg>`;
+
+	const blogArticle = document.querySelector(".blog");
+
+	if(blogArticle) {
+		const anchorHeadings = blogArticle.querySelectorAll("h2, h3, h4, h5, h6");
+
+		[...anchorHeadings].forEach((heading) => {
+			const anchor = document.createElement("a");
+			anchor.href = `#${heading.id}`;
+
+			const linkIconWrapper = document.createElement("span");
+			linkIconWrapper.innerHTML = linkSvg;
+			linkIconWrapper.classList.add("link-icon");
+
+			heading.appendChild(linkIconWrapper);
+			
+			linkIconWrapper.addEventListener("click", () => {
+				navigator.clipboard.writeText(anchor.href)
+				.then(() => {
+					linkIconWrapper.classList.remove("link-icon");
+					linkIconWrapper.classList.add("link-clicked-icon");
+					linkIconWrapper.innerHTML = linkClickedSvg;
+
+					setTimeout(() => {
+						linkIconWrapper.classList.remove("link-clicked-icon");
+						linkIconWrapper.classList.add("link-icon");
+						linkIconWrapper.innerHTML = linkSvg;
+					}, 2000);
+				})
+				.catch((err) => {
+					console.error("Failed to copy URL:", err)
+				});
+			});
+		});
+	}
+</script>
