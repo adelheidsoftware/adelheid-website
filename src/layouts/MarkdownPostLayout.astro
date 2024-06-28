@@ -148,6 +148,7 @@ time { // TODO: Fix time so it's in EST
 	vertical-align: middle;
 	cursor: pointer;
 	height: 100%;
+	visibility: hidden;
 
 	color: var(--color-primary);
 	padding-left: 4px;
@@ -166,6 +167,10 @@ time { // TODO: Fix time so it's in EST
 	color: #1a7f37;
 	padding-left: 4px;
 }
+
+.blog h2:hover .link-icon, .blog h3:hover .link-icon, .blog h4:hover .link-icon, .blog h5:hover .link-icon, .blog h6:hover .link-icon {
+	visibility: visible;
+}
 	`);
 	document.adoptedStyleSheets.push(sheet);
 
@@ -183,6 +188,7 @@ time { // TODO: Fix time so it's in EST
 			anchor.href = `#${heading.id}`;
 
 			const linkIconWrapper = document.createElement("span");
+			linkIconWrapper.setAttribute("title", "Click to copy a link to this section.");
 			linkIconWrapper.innerHTML = linkSvg;
 			linkIconWrapper.classList.add("link-icon");
 
