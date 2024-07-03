@@ -34,8 +34,7 @@ const canonicalURLString = getCanonicalURL(Astro.url.pathname);
 		<link rel="icon" type="image/png" href="/favicon.png" /> <!-- TODO: Fix SVG version and use that instead -->
 		<link rel="canonical" href={canonicalURLString} />
 		<link rel="sitemap" href="/sitemap-index.xml" />
-		<link rel="alternate" type="application/rss+xml" title="Adelheid Software Ltd." href={new URL("rss.xml", Astro.site)}
-/>
+		<link rel="alternate" type="application/rss+xml" title="Adelheid Software Ltd." href={new URL("rss.xml", Astro.site)}/>
 		<title>{title}</title>
 		<slot name="structured-data"/>
 		<script is:inline src='/scripts/theme-handler.js' />
