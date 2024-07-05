@@ -20,6 +20,8 @@ This website should work just fine in all major browsers updated within the past
 * Chrome
 * Any other Chromium-based browser.
 
+For Ladybird users: We periodically check to see how our website holds up in Ladybird. As of this writing, the website does mostly work, but certain CSS transitions and animations do not appear to work, such as those used in our site navigation, as well as those used on our game cards. In addition, CSS grid support appears to be missing almost entirely.
+
 **Internet Explorer is not supported.**
 
 If you see an issue, please notify us by joining the community or opening up an issue.
