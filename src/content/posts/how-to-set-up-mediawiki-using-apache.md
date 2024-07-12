@@ -603,9 +603,9 @@ In your database software, make the following changes:
 GRANT ALL PRIVILEGES on main.spoofuser to 'newwikiadmin'@'localhost';
 ```
 
-If you have a family of wikis, you need to grant these privileges for the `main.spoofuser` table to all database users of your wiki family.
+You need to grant these privileges for the `main.spoofuser` table to all database users of your wiki family.
 
-Once you are done:
+Once you are done, save and exit:
 ```
 FLUSH PRIVILEGES;
 EXIT;
