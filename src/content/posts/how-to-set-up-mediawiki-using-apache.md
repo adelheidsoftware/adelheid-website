@@ -139,21 +139,21 @@ Finally, you'll want to save the file and exit. If using Vim, press `Esc` to sto
 
 ### Create a MediaWiki Database
 
-The database name you pick is sort of like a 'Wiki ID', so choose something identifiable. For this tutorial, we'll just go with `mediawiki`. 
+The database name you pick is sort of like a 'Wiki ID', so choose something identifiable. For this tutorial, we'll just go with `main`. 
 
-Note for those who want to create a family of wikis: When you create your wiki database, you'll be creating a system user for the database. If you plan to make a connected family of wikis, you'll need to create a database for each one, and each one also needs to have its own system user. If you want to share data across your family of wikis, such as the user table, you'll need to select a wiki whose database is the 'main' database, with other database system users having SELECT and UPDATE permissions for the main database. If you have a connected family of wikis, it's likely you'll have a meta wiki, so you could make the meta wiki first and use that database as the main one.
+Note for those who want to create a family of wikis: When you create your wiki database, you'll be creating a system user for the database. If you plan to make a connected family of wikis, you'll need to create a database for each one, and each one also needs to have its own system user. If you want to share data across your family of wikis, such as the user table, you'll need to select a wiki whose database is the 'main' database, with other database system users having the correct permissions for the main database. If you have a connected family of wikis, it's likely you'll have a meta wiki, so you could make the meta wiki first and use that database as the main one.
 
 Use the following command (and enter the root password as necessary) to start interacting with the database software:  
 `sudo mysql -u root -p`
 
 Create the database with your chosen name:  
-`CREATE DATABASE mediawiki;`
+`CREATE DATABASE main;`
 
-Create a database user called `sysadmin` and select a password:  
+Create a database user called `sysadmin` (or whatever name you prefer) and select a password:  
 `CREATE USER 'sysadmin'@'localhost' IDENTIFIED BY 'password';`
 
 Grant `sysadmin` full database access:  
-`GRANT ALL PRIVILEGES ON mediawiki.* TO 'sysadmin'@'localhost' IDENTIFIED BY 'password' WITH GRANT OPTION;`
+`GRANT ALL PRIVILEGES ON main.* TO 'sysadmin'@'localhost' IDENTIFIED BY 'password' WITH GRANT OPTION;`
 
 Save your changes and exit:  
 ```
@@ -209,7 +209,7 @@ You can copy and paste these contents into the file:
 </VirtualHost>
 ```
 
-Make sure you modify the `ServerAdmin`, `ServerName,` and `ServerAlias` fields as necessary. If you do not have alternative URLs, you can delete the `ServerAlias` line entirely.
+Make sure you modify the `ServerAdmin`, `ServerName`, and `ServerAlias` fields as necessary. If you do not have alternative URLs, you can delete the `ServerAlias` line entirely.
 
 Once you're done, you can save and exit. If using Vim, type `:wq!`.
 
@@ -236,7 +236,7 @@ Once that's all done, you can now visit your website in the browser to finish se
 
 Once you select your language and the wiki's language, the next page should tell you a bit about your installation. If it says you can install MediaWiki, then you can go ahead and continue.
 
-On the next page, it will ask you some information about your database. Enter the information as you've set it up; if you've followed this guide, you just need to enter `mediawiki` into the "Database name" box. In addition, you'll need to enter the database username and password for the database user we created earlier. Following this guide, that would be `sysadmin` and whatever password you selected for the database user.
+On the next page, it will ask you some information about your database. Enter the information as you've set it up; if you've followed this guide, you just need to enter `main` into the "Database name" box. In addition, you'll need to enter the database username and password for the database user we created earlier. Following this guide, that would be `sysadmin` and whatever password you selected for the database user.
 
 Continue onto the next page and select the option to use the same account as installation for web access. Continuing to the next page again, you'll need to enter the name of the wiki, as well as create your MediaWiki administrator account. Keep in mind this administrator account is different from all of the other ones, and is used by you to do administrative tasks on the wiki.
 
@@ -313,13 +313,35 @@ You're just about done! You will need to download `LocalSettings.php` now and pl
 
 Once you do that, you're finished with basic setup! Congratulations!
 
+## Setting up Uploads
+
+In order for users to upload images to your wiki, you need to make sure your server has the correct file permissions. You can ensure this by doing the following:
+
+First, ensure your upload directory has the correct permissions. If you changed your upload directory using `$wgUploadDirectory` then adjust these commands as necessary, but for our purposes we will refer to the upload directory as `/var/www/html/mediawiki/images`.
+
+Run the following commands:
+```
+sudo chmod -R 755 /var/www/html/mediawiki/images
+sudo chmod -R -x+X /var/www/html/mediawiki/images
+sudo chown -R www-data:www-data /var/www/html/mediawiki/images
+```
+
+These commands ensure the following:
+* User can read, write, and execute. Group can read and execute. World can read and execute.
+* Only folders have executable permissions; files do not.
+* The server user owns the images directory and can make modifications and additions.
+
+Once this is done, you can edit `LocalSettings.php` and set `$wgEnableUploads = true;`.
+
+If you follow the instructions below to create a family of wikis and only want uploads enabled on some wikis instead of all of them, then delete `$wgEnableUploads = true;` from `LocalSettings.php` and put it in each wiki-specific `LocalSettings_<wikiID>.php` file instead. 
+
 ## Creating a Wiki Family
 
-This section of the tutorial will teach you how to create multiple wikis that use the same web server and MediaWiki source code, and share the user table, but are otherwise independent.
+This section of the tutorial will teach you how to create multiple wikis that use the same web server and MediaWiki source code, as well as share user tables, but are otherwise independent.
 
 ### Create Databases
 
-You will need to create the databases for each wiki first. Keep in mind this assumes you've done all of the above, first. If creating a family of wikis, you need to designate one wiki database to be the main one. For our purposes, this will be the first wiki database we created, `mediawiki`.
+You will need to create the databases for each wiki first. Keep in mind this assumes you've done all of the above. If creating a family of wikis, you need to designate one wiki database to be the main one. For our purposes, this will be the first wiki database we created, `main`.
 
 
 Step 1. Begin interacting with the database software:  
@@ -336,9 +358,10 @@ Step 4. Grant `newwikiadmin` full access to the `newwiki` database:
 
 Step 5. Next, you'll need to grant your `newwikiadmin` database user access to the `user`, `user_properties`, and `actor` tables.  
 ```
-GRANT SELECT, UPDATE, INSERT on mediawiki.user to 'newwikiadmin'@'localhost';
-GRANT SELECT, UPDATE, INSERT on mediawiki.user_properties to 'newwikiadmin'@'localhost';
-GRANT SELECT, UPDATE, INSERT on mediawiki.actor to 'newwikiadmin'@'localhost';
+GRANT SELECT, UPDATE, INSERT, ALTER on main.user to 'newwikiadmin'@'localhost';
+GRANT SELECT, UPDATE, INSERT, ALTER on main.actor to 'newwikiadmin'@'localhost';
+GRANT SELECT, UPDATE, INSERT, ALTER, DELETE on main.user_properties to 'newwikiadmin'@'localhost';
+GRANT CREATE, INDEX, ALTER on main.user_autocreate_serial to 'newwikiadmin'@'localhost';
 ```
 
 Repeat steps 2 through 5 for each wiki you want to create, creating a separate user for each database, each with a unique password.
@@ -385,7 +408,7 @@ Example:
 
 ### Setting up LocalSettings.php
 
-Navigate to your MediaWiki directory. For us, that is `/var/www/html/mediawiki/`. If you followed this tutorial, you'll have a `LocalSettings.php` file for your primary wiki already set up. You should now rename it to `LocalSettings_mediawiki.php`. If you used a different name than `mediawiki` for your first wiki, make sure you use that name instead.
+Navigate to your MediaWiki directory. For us, that is `/var/www/html/mediawiki/`. If you followed this tutorial, you'll have a `LocalSettings.php` file for your primary wiki already set up. You should now rename it to `LocalSettings_main.php`. If you used a different name than `main` for your first wiki, make sure you use that name instead.
 
 At this point, you should now visit all of your other wikis in the browser and go through the setup process just as we did before, generating a `LocalSettings.php` each time. Make sure you enter the correct database name, user, and password for each. Also, when it asks you to create an administrator account, you can either use the same account (with the same password) as you used for the first wiki, or create a separate admin account for each wiki.
 
@@ -395,7 +418,7 @@ After that, create a new `LocalSettings.php` file in your MediaWiki directory an
 ```
 <?php
 $wikis = [
-    'example.com' => 'mediawiki',
+    'example.com' => 'main',
     'one.example.com' => 'newwiki',
 ];
 if ( defined( 'MW_DB' ) ) {
@@ -412,8 +435,8 @@ if ( $wikiID ) {
     die( 'Unknown wiki.' );
 }
 
-$wgSharedDB = 'mediawiki';
-$wgSharedTables[] = 'actor';
+$wgSharedDB = 'main';
+$wgSharedTables = array_merge( $wgSharedTables, ['user', 'user_properties', 'user_autocreate_serial', 'actor'] );
 
 $wgCookieDomain = '.example.com';
 
@@ -422,7 +445,7 @@ $wgCookieDomain = '.example.com';
 
 In the `$wikis` array, you need to enter a domain and then point it to the appropriate wiki ID. This should match up with the database name and `LocalSettings_<wikiID>.php` file.
 
-The `$wgSharedDB` variable points to the primary wiki database as mentioned previously. The `$wgSharedTables[]` variable describes which tables should be shared. The `user` and `user_properties` tables are shared by default, so you only need to specify `actor` here.
+The `$wgSharedDB` variable points to the primary wiki database as mentioned previously. The `$wgSharedTables` variable describes which tables should be shared. The `user` and `user_properties` tables are shared by default, but it doesn't hurt to list them anyway for clarity.
 
 Finally, the `$wgCookieDomain` variable points to the top-level domain used for your family of wikis, which allows you to share login sessions across all of them.
 
@@ -563,6 +586,40 @@ Again, modify this to match whatever URL schema you prefer.
 Note that this doesn't seem to affect diff pages viewed via the Revision Slider extension, but it will work for diffs viewed normally, such as from the watchlist page.
 
 That's it!
+
+## Adding AntiSpoof Extension
+
+You may or may not want to add the [AntiSpoof extension](https://www.mediawiki.org/wiki/Extension:AntiSpoof). This extension prevents users from spoofing existing usernames. If you only have a single wiki, then just follow the [installation instructions](https://www.mediawiki.org/wiki/Extension:AntiSpoof#Installation) as normal. However, if you have a wiki family, you'll need to do just a little bit more.
+
+Start by following the AntiSpoof instructions until it mentions shared databases. Then follow these instructions:
+
+Add 'spoofuser' to `$wgSharedTables` in `LocalSettings.php` like so:
+```
+$wgSharedTables = array_merge( $wgSharedTables, ['user', 'user_properties', 'user_autocreate_serial', 'actor', 'spoofuser'] );
+```
+
+In your database software, make the following changes:
+```
+GRANT ALL PRIVILEGES on main.spoofuser to 'newwikiadmin'@'localhost';
+```
+
+If you have a family of wikis, you need to grant these privileges for the `main.spoofuser` table to all database users of your wiki family.
+
+Once you are done:
+```
+FLUSH PRIVILEGES;
+EXIT;
+```
+
+From here, you can follow the rest of the AntiSpoof extension instructions as normal.
+
+## Updating and Maintaining Your Wikis
+
+If you have a wiki family, you will need to keep the following in mind when updating or running maintenance scripts:
+
+* When updating, you must always update your main wiki first (the one with the shared user tables).
+* In order to do this, you can use the regular maintenance script instructions, but you must supply the `--wiki=<wikiID>` parameter to the command.
+* Once your main wiki is updated, then you can update the rest of your wikis in turn, providing their wiki ID each time.
 
 ## The End
 
