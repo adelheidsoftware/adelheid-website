@@ -613,6 +613,32 @@ EXIT;
 
 From here, you can follow the rest of the AntiSpoof extension instructions as normal.
 
+## Adding GlobalCssJs Extension
+
+This extension allows you to put global CSS in `MediaWiki:Global.css` on your main wiki and have it apply to all wikis in your wiki family. Each wiki's `MediaWiki:Common.css` will also override `Global.css`, which is really nice. First, install the extension as you would normally install any extension.
+
+Now add the following to `LocalSettings.php`:
+```
+$wgUseGlobalSiteCssJs = true;
+
+$wgGlobalCssJsConfig = [
+	'wiki' => 'main',
+	'source' => 'main',
+];
+
+$wgResourceLoaderSources['main'] = array(
+	'apiScript' => 'https://your.site.wiki/api.php',
+	'loadScript' => 'https://your.site.wiki/load.php'
+);
+```
+
+You may also have to set the proper database permissions on each wiki in your family:
+```
+GRANT SELECT on main.page to 'newwikiadmin'@'localhost';
+```
+
+That's it!
+
 ## Updating and Maintaining Your Wikis
 
 If you have a wiki family, you will need to keep the following in mind when updating or running maintenance scripts:
