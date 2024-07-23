@@ -1,7 +1,7 @@
 ---
 title: 'Postbound! is Now Available on Steam!'
 pubDate: 2024-07-22T08:00:00.000-05:00
-summary: 'Postbound! is now available on Steam!'
+summary: 'Go grab it and let us know what you think!'
 author: 'Aaron Yoder'
 authorTitle: ''
 tags: ['gamedev', 'steam', 'postbound', 'release']
