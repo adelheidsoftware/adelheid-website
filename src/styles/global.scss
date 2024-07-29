@@ -32,9 +32,14 @@
 	padding-bottom: 2rem;
 }
 
+@media (prefers-reduced-motion: no-preference) {
+	html {
+		scroll-behavior: smooth;
+	}
+}
+
 html {
 	font-family: 'Noto Sans', sans-serif;
-	scroll-behavior: smooth;
 }
 
 body, h1, h2, h3, h4, h5, h6, p, small {
@@ -157,22 +162,6 @@ a:active {
 ::selection {
 	color: var(--color-background); // Text color
 	background: var(--color-on-background);
-}
-
-/* Scrollbar styles */
-::-webkit-scrollbar {
-	height: 1rem;
-}
-
-::-webkit-scrollbar-track {
-	background-color: var(--color-surface);
-	border: 1px solid var(--color-outline);
-	border-radius: 0.25rem;
-}
-
-::-webkit-scrollbar-thumb {
-	background-color: var(--color-on-surface);
-	border-radius: 0.25rem;
 }
 
 .roundable { // Primarily used for logo
