@@ -3,6 +3,7 @@ import PageLayout from '../../layouts/PageLayout.astro';
 
 import company from '../../data/company.json';
 import postbound from '../../data/games/postbound.json';
+import steamIcon from '../../assets/svg/icons/steam.svg';
 ---
 
 <PageLayout title='Postbound!' description=`A game developed by ${company.name}.`>
@@ -20,7 +21,9 @@ import postbound from '../../data/games/postbound.json';
 			<br>
 			<b>Genre</b>: Arcade, Casual
 			<br>
-			<b>Store page</b>: <a href={postbound.steamPageURL}>Steam Page</a> (Wishlist today!)
+			<div class="store-links">
+				<a class="store-link" href=`${postbound.steamPageURL}` title="Steam"><svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" width="64" height="64" viewBox="8.899999618530273 0 50 50" xml:space="preserve"><defs><linearGradient id="steam-gradient" x2="0.35" y2="1"><stop offset="15%" stop-color="#121B2E"/><stop offset="100%" stop-color="#0175A9"/></linearGradient></defs><path class="st0" d="M33.9 0C20.7 0 10 10.1 8.9 23l13.4 5.5c1.1-.8 2.5-1.2 4-1.2h.4l6-8.6v-.1c0-5.2 4.2-9.4 9.4-9.4s9.4 4.2 9.4 9.4-4.2 9.4-9.4 9.4h-.2l-8.5 6v.3c0 3.9-3.2 7.1-7.1 7.1-3.4 0-6.3-2.4-6.9-5.7l-9.6-4C12.8 42.3 22.4 50 33.9 50c13.8 0 25-11.2 25-25S47.7 0 33.9 0"/><path class="st0" d="m24.6 37.9-3.1-1.3c.5 1.1 1.5 2.1 2.7 2.6 2.7 1.1 5.8-.2 6.9-2.9.5-1.3.5-2.8 0-4.1s-1.6-2.3-2.9-2.9c-1.3-.5-2.7-.5-3.9-.1l3.2 1.3c2 .8 2.9 3.1 2.1 5.1-.7 2.2-3 3.2-5 2.3m23.8-19.3c0-3.5-2.8-6.3-6.3-6.3s-6.3 2.8-6.3 6.3 2.8 6.3 6.3 6.3c3.5-.1 6.3-2.9 6.3-6.3m-11-.1c0-2.6 2.1-4.7 4.7-4.7s4.7 2.1 4.7 4.7-2.1 4.7-4.7 4.7c-2.6.1-4.7-2-4.7-4.7"/></svg></a>
+			</div>
 			<br>
 		</p>
 		<h2>Summary</h2>
@@ -44,5 +47,29 @@ import postbound from '../../data/games/postbound.json';
 <style lang="scss">
 p {
 	margin-top: 0.5rem;
+}
+
+.store-link {
+	display: flex;
+	transition: 200ms ease-out;
+
+	svg {
+		color: var(--color-on-background) !important;
+		fill: linear-gradient(0deg, rgba(1,117,169,1) 0%, rgba(18,27,46,1) 85%) !important;
+		width: 64px;
+		height: 64px;
+	}
+
+	svg:hover {
+		color: var(--color-tertiary);
+	}
+}
+
+.store-link[title="Steam"] {
+	svg:hover {
+		.st0 {
+			fill: url(#steam-gradient) #fff;
+		}
+	}
 }
 </style>
