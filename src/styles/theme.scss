@@ -185,6 +185,12 @@
 	@include light-theme-base;
 }
 
+@media (prefers-color-scheme: dark) {
+	:root { // Base Dark Theme as the default
+		@include dark-theme-base;
+	}
+}
+
 html[data-theme='light'] {
 	@include light-theme;
 }
