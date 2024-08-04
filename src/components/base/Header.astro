@@ -9,7 +9,7 @@ import company from '../../data/company.json';
 	<div class="wrapper">
 		<div class="inner">
 			<a href="/" aria-label="Home" class="site-header-brand">
-				<img src={svgLogo.src} alt=`${company.name} Logo` class="logo roundable" aria-hidden="true" onload="this.style.visibility='visible'"/>
+				<img src={svgLogo.src} alt=`${company.name} Logo` class="logo roundable" aria-hidden="true"/>
 			</a>
 			<Nav/>
 		</div>
@@ -37,10 +37,6 @@ header {
 	.logo {
 		width: 96px;
 		height: 96px;
-	}
-
-	img { // Workaround for image flashing alt text before loading on Firefox -- requires onload on img tag
-		visibility: hidden;
 	}
 
 }

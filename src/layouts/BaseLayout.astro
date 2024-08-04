@@ -38,6 +38,7 @@ const canonicalURLString = getCanonicalURL(Astro.url.pathname);
 		<title>{title}</title>
 		<slot name="structured-data"/>
 		<script is:inline src='/scripts/theme-handler.js' />
+		<noscript><style is:global> .js-required { display: none !important; } </style></noscript>
 	</head>
 	<body>
 		<div class="site-wrapper">

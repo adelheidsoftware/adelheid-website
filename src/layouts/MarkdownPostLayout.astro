@@ -4,6 +4,9 @@ import BaseLayout from './BaseLayout.astro';
 import LinkChip from '../components/LinkChip.astro';
 import BlogBackButton from '../components/BlogBackButton.astro';
 
+import headerLinkSvg from '../assets/svg/icons/header-link.svg?raw';
+import headerLinkClickedSvg from '../assets/svg/icons/header-link-clicked.svg?raw';
+
 const { frontmatter } = Astro.props;
 
 const dateOptions: object = {
@@ -49,6 +52,9 @@ import company from '../data/company.json';
 						</li>
 					</ul>
 				</div>
+				<noscript>
+					<p><em>JavaScript is disabled. Header link copying functionality is not available.</em></p>
+				</noscript>
 			</div>
 
 			<slot />
@@ -136,13 +142,10 @@ time { // TODO: Fix time so it's in EST
 	margin: 0 !important;
 	padding: 0 !important;
 }
-
 </style>
 
-<script>
-	const sheet = new CSSStyleSheet();
-	sheet.replaceSync(`
-.link-icon {
+<style lang="scss" is:global>
+.header-link-icon {
 	text-decoration: none;
 	display: inline-flex;
 	vertical-align: middle;
@@ -158,7 +161,7 @@ time { // TODO: Fix time so it's in EST
 	}
 }
 
-.link-clicked-icon {
+.header-link-clicked-icon {
 	text-decoration: none;
 	display: inline-flex;
 	vertical-align: middle;
@@ -168,43 +171,48 @@ time { // TODO: Fix time so it's in EST
 	padding-left: 4px;
 }
 
-.blog h2:hover .link-icon, .blog h3:hover .link-icon, .blog h4:hover .link-icon, .blog h5:hover .link-icon, .blog h6:hover .link-icon {
+.blog h2:hover .header-link-icon,
+.blog h3:hover .header-link-icon,
+.blog h4:hover .header-link-icon,
+.blog h5:hover .header-link-icon,
+.blog h6:hover .header-link-icon {
 	visibility: visible;
 }
-	`);
-	document.adoptedStyleSheets.push(sheet);
+</style>
 
-	const linkSvg = `<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="M280-280q-83 0-141.5-58.5T80-480q0-83 58.5-141.5T280-680h120q17 0 28.5 11.5T440-640q0 17-11.5 28.5T400-600H280q-50 0-85 35t-35 85q0 50 35 85t85 35h120q17 0 28.5 11.5T440-320q0 17-11.5 28.5T400-280H280Zm80-160q-17 0-28.5-11.5T320-480q0-17 11.5-28.5T360-520h240q17 0 28.5 11.5T640-480q0 17-11.5 28.5T600-440H360Zm200 160q-17 0-28.5-11.5T520-320q0-17 11.5-28.5T560-360h120q50 0 85-35t35-85q0-50-35-85t-85-35H560q-17 0-28.5-11.5T520-640q0-17 11.5-28.5T560-680h120q83 0 141.5 58.5T880-480q0 83-58.5 141.5T680-280H560Z"/></svg>`;
-
-	const linkClickedSvg = `<svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="currentColor"><path d="m382-354 339-339q12-12 28-12t28 12q12 12 12 28.5T777-636L410-268q-12 12-28 12t-28-12L182-440q-12-12-11.5-28.5T183-497q12-12 28.5-12t28.5 12l142 143Z"/></svg>`;
-
+<script define:vars={{ headerLinkSvg, headerLinkClickedSvg }}>
 	const blogArticle = document.querySelector(".blog");
+	const anchorTemplate = document.createElement("a");
+	const headerLinkTemplate = document.createElement("span");
 
 	if(blogArticle) {
 		const anchorHeadings = blogArticle.querySelectorAll("h2, h3, h4, h5, h6");
 
+		anchorTemplate.href = "#";
+
+		headerLinkTemplate.setAttribute("title", "Click to copy a link to this section.");
+		headerLinkTemplate.classList.add("header-link-icon");
+
 		[...anchorHeadings].forEach((heading) => {
-			const anchor = document.createElement("a");
+			const anchor = anchorTemplate.cloneNode(true);
 			anchor.href = `#${heading.id}`;
 
-			const linkIconWrapper = document.createElement("span");
-			linkIconWrapper.setAttribute("title", "Click to copy a link to this section.");
-			linkIconWrapper.innerHTML = linkSvg;
-			linkIconWrapper.classList.add("link-icon");
+			const headerLinkWrapper = headerLinkTemplate.cloneNode(true);
+			headerLinkWrapper.innerHTML = headerLinkSvg;
 
-			heading.appendChild(linkIconWrapper);
+			heading.appendChild(headerLinkWrapper);
 			
-			linkIconWrapper.addEventListener("click", () => {
+			headerLinkWrapper.addEventListener("click", () => {
 				navigator.clipboard.writeText(anchor.href)
 				.then(() => {
-					linkIconWrapper.classList.remove("link-icon");
-					linkIconWrapper.classList.add("link-clicked-icon");
-					linkIconWrapper.innerHTML = linkClickedSvg;
+					headerLinkWrapper.classList.add("header-link-clicked-icon");
+					headerLinkWrapper.classList.remove("header-link-icon");
+					headerLinkWrapper.innerHTML = headerLinkClickedSvg;
 
 					setTimeout(() => {
-						linkIconWrapper.classList.remove("link-clicked-icon");
-						linkIconWrapper.classList.add("link-icon");
-						linkIconWrapper.innerHTML = linkSvg;
+						headerLinkWrapper.classList.remove("header-link-clicked-icon");
+						headerLinkWrapper.classList.add("header-link-icon");
+						headerLinkWrapper.innerHTML = headerLinkSvg;
 					}, 2000);
 				})
 				.catch((err) => {

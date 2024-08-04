@@ -60,7 +60,7 @@ import social from '../../data/social.json';
 			<Separator/>
 			<div class="subfooter-end-container">
 				<a href="/" aria-label="Home" class="brand-link">
-					<img src={svgLogo.src} alt=`${company.name} Logo` class="logo roundable" aria-hidden="true" onload="this.style.visibility='visible'"/>
+					<img src={svgLogo.src} alt=`${company.name} Logo` class="logo roundable" aria-hidden="true"/>
 				</a>
 
 				<small class="copyright-statement">&copy; 2023 {company.legalName}</small>
@@ -207,19 +207,18 @@ footer {
 			justify-content: space-between;
 
 			.brand-link {
-				display: flex;
-			}
+				flex-grow: 1;
+				text-align: left;
 
-			.logo {
-				width: 48px;
-				height: 48px;
-			}
-
-			img { // Workaround for image flashing alt text before loading on Firefox -- requires onload on img tag
-				visibility: hidden;
+				.logo {
+					width: 48px;
+					height: 48px;
+				}
 			}
 
 			.copyright-statement {
+				flex-grow: 1;
+				align-self: center;
 				font-size: 1rem;
 			}
 		}
