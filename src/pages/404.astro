@@ -1,0 +1,58 @@
+---
+import ErrorLayout from '../layouts/ErrorLayout.astro';
+import ThemeToggle from '../components/ThemeToggle.astro';
+import LinkButton from '../components/LinkButton.astro';
+
+import company from '../data/company.json';
+---
+
+<ErrorLayout title=`${company.name} | 404`` description="An indie game and software development studio.">
+	<div class="not-found-container">
+		<div class="not-found-content">
+			<h1>404</h1>
+			<p>There's nothing<br>to see here.</p>
+		</div>
+	</div>
+</ErrorLayout>
+
+<style lang="scss">
+
+.not-found-container {
+	display: grid;
+	place-content: center;
+	position: relative;
+	height: 60vh;
+}
+
+.not-found-content {
+	display: flex;
+	flex-direction: column;
+	place-items: center;
+	user-select: none;
+
+	h1 {
+		font-family: 'Noto Sans Mono', monospace;
+		font-size: 16rem;
+		font-weight: 700;
+		line-height: 100%;
+		color: var(--color-error-variant);
+	}
+
+	p {
+		font-family: 'Noto Sans', sans-serif;
+		font-size: 3.75rem;
+		font-weight: 700;
+		text-align: center;
+		line-height: 1.25;
+	}
+
+	button {
+		margin-top: 10rem;
+	}
+}
+
+.not-found-footer {
+	float: right;
+}
+
+</style>

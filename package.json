@@ -19,7 +19,7 @@
     "@fontsource/noto-sans": "^5.0.18",
     "@fontsource/noto-sans-display": "^5.0.18",
     "@fontsource/noto-sans-math": "^5.0.8",
-    "@fontsource/noto-sans-mono": "^5.0.18",
+    "@fontsource/noto-sans-mono": "^5.0.20",
     "astro": "^4.12.3",
     "typescript": "^5.3.3"
   },

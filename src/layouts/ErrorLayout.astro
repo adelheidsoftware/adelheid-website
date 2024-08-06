@@ -1,0 +1,54 @@
+---
+interface Props {
+	title: string;
+	description: string;
+}
+
+const { title, description } = Astro.props;
+
+import MetaTags from '../components/base/MetaTags.astro';
+
+import Header from '../components/base/Header.astro';
+
+// Supports weights 100-900
+import '@fontsource/noto-sans';
+import '@fontsource/noto-mono';
+import '@fontsource/noto-sans-mono';
+import '@fontsource/noto-sans-display';
+import '@fontsource/noto-sans-math';
+
+import '../styles/global.scss';
+
+import { getCanonicalURL } from '../constants.ts';
+
+const canonicalURLString = getCanonicalURL(Astro.url.pathname);
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width" />
+		<MetaTags title={title} description={description}/>
+		<link rel="icon" type="image/png" href="/favicon.png" /> <!-- TODO: Fix SVG version and use that instead -->
+		<link rel="canonical" href={canonicalURLString} />
+		<link rel="sitemap" href="/sitemap-index.xml" />
+		<link rel="alternate" type="application/rss+xml" title="Adelheid Software Ltd." href={new URL("rss.xml", Astro.site)}/>
+		<title>{title}</title>
+		<slot name="structured-data"/>
+		<script is:inline src='/scripts/theme-handler.js' />
+		<noscript><style is:global> .js-required { display: none !important; } </style></noscript>
+	</head>
+	<body>
+		<div class="site-wrapper">
+			<Header/>
+			<main>
+				<slot />
+			</main>
+		</div>
+
+		<!-- Cloudflare Web Analytics -->
+		<script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "f8c4262f7ac0455aae1a4eae6835d242"}'></script>
+		<!-- End Cloudflare Web Analytics -->
+	</body>
+</html>
