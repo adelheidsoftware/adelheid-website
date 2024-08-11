@@ -13,9 +13,12 @@ import postbound from '../data/games/postbound.json';
 <PageLayout title='Games' description=`Games developed by ${company.name}.`>
 	<Fragment slot="page-header">Games</Fragment>
 	<article slot="page-content">
-		<h2>Upcoming</h2>
+		<h2>Released</h2>
 		<div class="game-grid">
 			<GameCard href="/games/postbound" title="Postbound!" image={postboundImage} body=`${postbound.name} is a 2D arcade-style mail sorting game following your journey as a novice postal worker.`/>
+		</div>
+		<h2>Upcoming</h2>
+		<div class="game-grid">
 			<GameCard href="https://riskrieg.com" title="Riskrieg" image={riskriegImage} body=`Re-releases 2025. Riskrieg is a conflict simulator that allows you to play out scenarios on a variety of maps.`/>
 			<GameCard href="" title="Project Artemis" body=`Still under heavy development. Check back later this year!`/>
 		</div>
