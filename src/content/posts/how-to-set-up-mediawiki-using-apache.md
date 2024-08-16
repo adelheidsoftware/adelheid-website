@@ -190,7 +190,8 @@ You can copy and paste these contents into the file:
   DocumentRoot /var/www/html/mediawiki
   ServerName <IP/domain of host machine>
   ServerAlias <alternative URLs to go to your wiki>
-  
+#  ErrorDocument 404 /404.html # Uncomment this line if you want to create a custom 404 page placed in the document root
+
   <Directory /var/www/html/mediawiki/>
     Options +FollowSymlinks
     AllowOverride All
@@ -387,6 +388,7 @@ Example:
   DocumentRoot /var/www/html/mediawiki
   ServerName <IP/domain of host machine>
   ServerAlias *.example.com
+#  ErrorDocument 404 /404.html # Uncomment this line if you want to create a custom 404 page placed in the document root
   
   <Directory /var/www/html/mediawiki/>
     Options +FollowSymlinks
@@ -490,6 +492,7 @@ Add the rewrite rules as provided by the linked website. For us, our configurati
   DocumentRoot /var/www/html/mediawiki
   ServerName example.com
   ServerAlias *.example.com
+#  ErrorDocument 404 /404.html # Uncomment this line if you want to create a custom 404 page placed in the document root
   
   <Directory /var/www/html/mediawiki/>
     Options +FollowSymlinks
@@ -502,14 +505,13 @@ Add the rewrite rules as provided by the linked website. For us, our configurati
 
   RewriteEngine On
 
+  # Set up short URLs: rewrite requests to /w/* to index.php
   RewriteRule ^/?w(/.*)?$ %{DOCUMENT_ROOT}/index.php [L]
 
-  RewriteCond %{REQUEST_URI} !^/rest\.php
-  RewriteCond %{REQUEST_URI} !^/api\.php
-  RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} !-f
-  RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} !-d
-  RewriteRule ^(.*)$ %{DOCUMENT_ROOT}/index.php [L]
+  # Redirect / to main page
+  RewriteRule ^/*$ %{DOCUMENT_ROOT}/index.php [L]
 
+  # Rewrite image thumbnail requests to thumb.php
   RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} !-f
   RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} !-d
   RewriteRule ^/?images/thumb/[0-9a-f]/[0-9a-f][0-9a-f]/([^/]+)/([0-9]+)px-.*$ %{DOCUMENT_ROOT}/thumb.php?f=$1&width=$2 [L,QSA,B]
@@ -533,6 +535,103 @@ Restart the Apache2 service:
 `sudo systemctl restart apache2.service`
 
 Verify that your main page is just your desired domain name, and that articles have short URLs as you've set them up. If everything seems to be in order, then you're ready for the next step.
+
+## Use a different robots.txt and favicon.ico for each wiki in a wiki family
+
+Right now, we can only have a single `robots.txt` or `favicon.ico` file inside of `/var/www/html/mediawiki/`. However, we may want to serve a different `robots.txt` file for each wiki. This is especially true if we want to point to each wiki's sitemap inside of the `robots.txt` file without having to host each wiki on a separate apache configuration.
+
+The general goal is to internally redirect `subdomain1.example.com/robots.txt` to a `robots_subdomain1.txt` file and prevent direct access of `robots_subdomain1.txt` from other subdomains on the same host. We might also want to have a fallback `robots.txt` file in case `robots_subdomain1.txt` does not exist, and we do not want to have to manually specify each subdomain; we want it to automatically find the right `robots.txt` file. We also want to accomplish much the same thing with the `favicon.ico` file. We could also put our files in another directory, but we'll keep it relatively simple for this example.
+
+Start by modifying the Apache configuration:  
+`sudo vim /etc/apache2/sites-available/mediawiki.conf`
+
+Add the following rewrite rules to the beginning:
+```
+# Redirect favicon.ico based on which wiki we are on
+RewriteCond %{REQUEST_URI} ^/favicon\.ico
+RewriteCond %{HTTP_HOST} ^(?!www)([a-z]+)\.example\.com
+RewriteCond %{DOCUMENT_ROOT}/favicon_%1.ico -f
+RewriteRule ^/?(.*)$ favicon_%1.ico [L]
+
+# Redirect direct requests to "robots_<subdomain>.txt" to "robots.txt" on <subdomain>
+RewriteCond %{ENV:REDIRECT_STATUS} ^$
+RewriteCond %{REQUEST_URI} ^/robots_([a-z]+)\.txt
+RewriteRule ^/?(.*)$ https://$1.example.com/robots.txt [R=301,L]
+
+# Rewrite "robots.txt" to "robots_<subdomain>".txt
+RewriteCond %{REQUEST_URI} ^/robots\.txt
+RewriteCond %{HTTP_HOST} ^(?!www)([a-z]+)\.example\.com
+RewriteCond %{DOCUMENT_ROOT}/robots_%1.txt -f
+RewriteRule ^/?(.*)$ robots_%1.txt [L]
+```
+
+Our Apache configuration now looks something like this:
+
+```
+<VirtualHost *:80>
+  ServerAdmin contact@example.com
+  DocumentRoot /var/www/html/mediawiki
+  ServerName example.com
+  ServerAlias *.example.com
+#  ErrorDocument 404 /404.html # Uncomment this line if you want to create a custom 404 page placed in the document root
+  
+  <Directory /var/www/html/mediawiki/>
+    Options +FollowSymlinks
+    AllowOverride All
+    Require all granted
+  </Directory>
+
+  ErrorLog ${APACHE_LOG_DIR}/error.log
+  CustomLog ${APACHE_LOG_DIR}/access.log combined
+
+  RewriteEngine On
+
+  # Redirect favicon.ico based on which wiki we are on
+  RewriteCond %{REQUEST_URI} ^/favicon\.ico
+  RewriteCond %{HTTP_HOST} ^(?!www)([a-z]+)\.example\.com
+  RewriteCond %{DOCUMENT_ROOT}/favicon_%1.ico -f
+  RewriteRule ^/?(.*)$ favicon_%1.ico [L]
+
+  # Redirect direct requests to "robots_<subdomain>.txt" to "robots.txt" on <subdomain>
+  RewriteCond %{ENV:REDIRECT_STATUS} ^$
+  RewriteCond %{REQUEST_URI} ^/robots_([a-z]+)\.txt
+  RewriteRule ^/?(.*)$ https://$1.example.com/robots.txt [R=301,L]
+
+  # Rewrite "robots.txt" to "robots_<subdomain>".txt
+  RewriteCond %{REQUEST_URI} ^/robots\.txt
+  RewriteCond %{HTTP_HOST} ^(?!www)([a-z]+)\.example\.com
+  RewriteCond %{DOCUMENT_ROOT}/robots_%1.txt -f
+  RewriteRule ^/?(.*)$ robots_%1.txt [L]
+
+  # Set up short URLs: rewrite requests to /w/* to index.php
+  RewriteRule ^/?w(/.*)?$ %{DOCUMENT_ROOT}/index.php [L]
+
+  # Redirect / to main page
+  RewriteRule ^/*$ %{DOCUMENT_ROOT}/index.php [L]
+
+  # Rewrite image thumbnail requests to thumb.php
+  RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} !-f
+  RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} !-d
+  RewriteRule ^/?images/thumb/[0-9a-f]/[0-9a-f][0-9a-f]/([^/]+)/([0-9]+)px-.*$ %{DOCUMENT_ROOT}/thumb.php?f=$1&width=$2 [L,QSA,B]
+
+  RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} !-f
+  RewriteCond %{DOCUMENT_ROOT}%{REQUEST_URI} !-d
+  RewriteRule ^/?images/thumb/archive/[0-9a-f]/[0-9a-f][0-9a-f]/([^/]+)/([0-9]+)px-.*$ %{DOCUMENT_ROOT}/thumb.php?f=$1&width=$2&archived=1 [L,QSA,B]
+
+  <Directory /var/www/html/mediawiki/images/>
+    AllowOverride None
+    AddType text/plain .html .htm .shtml .phtml
+    php_admin_flag engine off
+    Header set X-Content-Type-Options nosniff
+  </Directory>
+</VirtualHost>
+```
+
+After completing these steps, going to `subdomain1.example.com/robots.txt` will serve us the `robots_subdomain1.txt` file without changing the URL. It will also prevent direct access of the `robots_subdomain.txt` files on another subdomain. So, for example, if you tried to go to `subdomain2.example.com/robots_subdomain1.txt`, then it would redirect us to `subdomain1.example.com/robots.txt`. Finally, we are also able to use a fallback `robots.txt` file just in case the `robots_<subdomain>.txt` file does not exist.
+
+Similarly, the correct `favicon.ico` file is now used depending on which site subdomain you are on, and a fallback `favicon.ico` file is used if `favicon_<subdomain>.txt` does not exist.
+
+Please note that these changes may take a while to fully reflect on your end if your site is cached in your browser. You can try to flush your DNS cache and delete your browser cache to see the changes immediately.
 
 ### Action Pages
 
