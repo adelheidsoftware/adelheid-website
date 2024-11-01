@@ -15,7 +15,7 @@ Postbound! originally started as a solo game-jam project for the [OSU Game Creat
 
 ## Development Begins
 
-Adelheid Software started on January 1, 2022 with a developer, an artist, and a composer. Development started in late February with an original release date of May 27. Postbound! was not originally intended to be the studio's first game; we actually planned to start work on a medium-sized pixel art Metroidvania project. However, because we had not worked together before, we wanted to see how we worked together on a smaller project.
+Adelheid Software started on January 1, 2024 with a developer, an artist, and a composer. Development started in late February with an original release date of May 27. Postbound! was not originally intended to be the studio's first game; we actually planned to start work on a medium-sized pixel art Metroidvania project. However, because we had not worked together before, we wanted to see how we worked together on a smaller project.
 
 Unfortunately, development did not quite go as expected. The development period from February to April was fairly sporadic due to life events taking precedence. Nobody was at fault here—life just happens sometimes. Early April is when full-time development really began.
 
