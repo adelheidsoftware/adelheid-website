@@ -99,7 +99,7 @@ That leaves us with C# and Java/Kotlin, which we'll refer to as 'JVM languages' 
 
 We've decided to rewrite Postbound! in C# using Godot 4.4. However, we will circle back and explore using Godot-Kotlin for future projects once they complete the GDExtension version. Until then, we'll continue doing game development in C#.
 
-What does this mean for [gdscript-itilities](/blog/sharing-our-code-gdscript-utilities)? We will change the repository to godot-utilities and offer C#, and potentially Java/Kotlin, scripts in the repository, free to use for any purpose.
+What does this mean for [gdscript-utilities](/blog/sharing-our-code-gdscript-utilities)? We will change the repository to godot-utilities and offer C#, and potentially Java/Kotlin, scripts in the repository, free to use for any purpose.
 
 ## Timeline & Conclusion
 
