@@ -1,0 +1,11 @@
+---
+import PageLayout from '../layouts/PageLayout.astro';
+import social from '../data/social.json';
+---
+
+<PageLayout title='Newsletter' description=`Sign up for our newsletter!`>
+	<Fragment slot="page-header">Newsletter</Fragment>
+	<article slot="page-content">
+		<p>You can sign up for our newsletter <a href=`${social.newsletterURL}`>by clicking here</a>.</p>
+	</article>
+</PageLayout>
