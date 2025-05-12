@@ -15,6 +15,10 @@ export default defineConfig({
 	'/posts/[...slug]': {
 		status: 301,
 		destination: '/blog/[...slug]'
+	},
+	'/software': {
+		status: 301,
+		destination: '/projects'
 	}
   },
   build: {
