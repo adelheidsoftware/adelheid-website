@@ -16,6 +16,10 @@ export default defineConfig({
 		status: 301,
 		destination: '/blog/[...slug]'
 	},
+    'privacy-policy': {
+        status: 301,
+        destination:  'privacy'
+    },
 	'/software': {
 		status: 301,
 		destination: '/projects'
