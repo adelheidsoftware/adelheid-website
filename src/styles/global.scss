@@ -184,3 +184,107 @@ a:active {
 .cat:active {
 	transform: scaleY(0.5);
 }
+
+.legal-format {
+  ol {
+    list-style: none;
+    counter-reset: item;
+    margin: 0;
+    padding: 0;
+  }
+
+  ol > li {
+    display: table;
+    margin-bottom: 0.6em;
+    counter-increment: item;
+  }
+
+  ol > li::before {
+    display: table-cell;
+    padding-right: 0.6em;
+    text-transform: none;
+  }
+
+  /* Default decimal (type="1" or no type) */
+  ol:not([type]),
+  ol[type="1"] {
+    counter-reset: item;
+  }
+
+  ol:not([type]) > li::before,
+  ol[type="1"] > li::before {
+    content: counters(item, ".") ". ";
+    text-transform: none;
+  }
+
+  li ol:not([type]),
+  li ol[type="1"] {
+    counter-reset: item;
+  }
+
+  li ol:not([type]) > li::before,
+  li ol[type="1"] > li::before {
+    content: counters(item, ".") " ";
+    text-transform: none;
+  }
+
+  /* Lower alpha (a, b, c, ...) */
+  ol[type="a" s] > li::before {
+    content: "(" counter(item, lower-alpha) ") ";
+    text-transform: none;
+  }
+
+  li ol[type="a" s] {
+    counter-reset: item;
+  }
+
+  li ol[type="a" s] > li::before {
+    content: "(" counter(item, lower-alpha) ") ";
+    text-transform: none;
+  }
+
+  /* Upper alpha (A, B, C, ...) */
+  ol[type="A" s] > li::before {
+    content: counter(item, upper-alpha) ". ";
+    text-transform: none;
+  }
+
+  li ol[type="A" s] {
+    counter-reset: item;
+  }
+
+  li ol[type="A" s] > li::before {
+    content: counter(item, upper-alpha) ". ";
+    text-transform: none;
+  }
+
+  /* Lower Roman (i, ii, iii, ...) */
+  ol[type="i" s] > li::before {
+    content: "(" counter(item, lower-roman) ") ";
+    text-transform: none;
+  }
+
+  li ol[type="i" s] {
+    counter-reset: item;
+  }
+
+  li ol[type="i" s] > li::before {
+    content: "(" counter(item, lower-roman) ") ";
+    text-transform: none;
+  }
+
+  /* Upper Roman (I, II, III, ...) */
+  ol[type="I" s] > li::before {
+    content: counter(item, upper-roman) ". ";
+    text-transform: none;
+  }
+
+  li ol[type="I" s] {
+    counter-reset: item;
+  }
+
+  li ol[type="I" s] > li::before {
+    content: counter(item, upper-roman) ". ";
+    text-transform: none;
+  }
+}

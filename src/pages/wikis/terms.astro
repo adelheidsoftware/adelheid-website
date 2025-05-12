@@ -1,0 +1,14 @@
+---
+import PageLayout from "../../layouts/PageLayout.astro";
+
+import { Content as WikiTermsMarkdown } from "../../assets/markdown/wiki-terms-of-service.md";
+
+import company from "../../data/company.json";
+---
+
+<PageLayout
+	title="Wiki Terms of Service"
+	description=`The Terms of Service for the wikis hosted by ${company.name}.`
+>
+	<WikiTermsMarkdown slot="page-content" />
+</PageLayout>
