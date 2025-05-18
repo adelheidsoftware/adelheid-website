@@ -36,7 +36,7 @@ We use [Jetbrains Rider](https://www.jetbrains.com/rider/) for C# development, a
 
 We use **GDScript** and **C#** for our games.
 
-Our first game, [Postbound!](/games/postbound), was initially programmed entirely in GDScript, and later ported to C#.
+Our first game, [Postbound!](/games/postbound), was initially programmed entirely in GDScript, and later rewritten in C#.
 
 ### Art
 
