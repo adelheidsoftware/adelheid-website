@@ -28,6 +28,10 @@ We use [Discord](https://discord.com/) for internal day-to-day communication.
 
 We use the [Godot Game Engine](https://godotengine.org/) for all of our games.
 
+### IDE
+
+We use [Jetbrains Rider](https://www.jetbrains.com/rider/) for C# development, and [IntelliJ IDEA](https://www.jetbrains.com/idea/) for Java development.
+
 ### Programming Languages
 
 We use **GDScript** and **C#** for our games.
