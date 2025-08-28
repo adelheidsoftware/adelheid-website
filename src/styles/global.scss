@@ -1,10 +1,10 @@
-@import 'normalize';
-@import 'adelheid-reset';
-@import 'theme';
-@import 'defs';
+@use 'normalize';
+@use 'adelheid-reset';
+@use 'theme';
+@use 'defs';
 
 :root {
-	@include root-defs;
+	@include defs.root-defs;
 }
 
 .site-wrapper {
