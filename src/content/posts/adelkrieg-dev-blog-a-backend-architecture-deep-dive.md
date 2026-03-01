@@ -21,7 +21,7 @@ When a player wants to host or join a game, they interact with our lobby system.
 
 - **Lifecycle Management**: Lobbies follow a state progression of Pre-Game -> Play <-> Pause -> Pre-Game, with the ability to also close the lobby at any time. We've also implemented safety net features like auto-close and auto-pause behaviors based on active connections. This ensures that lobbies always minimize backend resource usage based on their current state.
 - **Membership & Concurrency**: We've built out a robust lobby system that supports regular members, spectators, lobby invites, and a live chat system.
-- **Computer Player Integration**: The computer player service manages adding and removing computer players. Computer player personas of varying difficulty levels can be dynamically dropped into an open lobby. We'll dive deeper on computer players later in this post.
+- **Computer Player Integration**: The computer player service manages adding and removing computer players. Computer player personas of varying difficulty levels can be dynamically dropped into an open lobby. We'll dive deeper on computer players in a later blog post.
 
 ## Social and Friend Systems
 
