@@ -80,7 +80,7 @@ This architecture allows us to give you the power to create your own modes by gr
 
 - **Perfect Crash Recovery**: If a server node completely crashes, we don't lose any game data. A new node can simply load the initial blank map and fast-forward through the saved list of game events. Within milliseconds, it rebuilds the exact state the game was in right before the crash, and players can resume seamlessly.
 - **Post-Game Replays**: Because we have a historical ledger of every single action that occurred, we can build end-of-game timelapses. Players will eventually be able to watch a fast-forwarded replay of the entire world map shifting colors and borders over the course of the match.
-- **Client Synchronization**: We don't need to send the entire massive game board to everyone's browser 60 times a second. We just send the small events ("Player red attacked territory 5 and won"), and the players' browsers compute the exact same logic as the server to stay perfectly in sync.
+- **Client Synchronization**: We don't need to send the entire massive game to everyone's browser 60 times a second. We just send the small events ("Player red attacked territory 5 and won"), and the players' browsers compute the exact same logic as the server to stay perfectly in sync.
 
 ***
 
