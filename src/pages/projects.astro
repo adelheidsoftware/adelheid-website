@@ -1,30 +1,68 @@
 ---
-import PageLayout from '../layouts/PageLayout.astro';
+import PageLayout from "../layouts/PageLayout.astro";
 
-import company from '../data/company.json';
-import social from '../data/social.json';
+import company from "../data/company.json";
+import social from "../data/social.json";
 ---
 
-<PageLayout title='Projects' description=`Software projects developed by ${company.name}.`>
+<PageLayout
+	title="Projects"
+	description=`Software projects developed by ${company.name}.`
+>
 	<Fragment slot="page-header">Projects</Fragment>
 	<article slot="page-content">
-		<p>We develop all kinds of software projects, typically related to games. These are tools we use and want to freely share with others. You can check some of them out on our <a href={social.githubURL}>GitHub</a>.</p>
-		<h2>Wiki Projects</h2>
-		<h3><a href=`https://soulsborne.wiki`>The Soulsborne Wikis</a></h3>
-		<p>A set of independent community-focused wikis for all major Soulsborne titles. This website is a passion project run by us and the community to provide a valuable resource for a community we love.</p>
-		<h3><a href=`https://avatar.wiki`>The Avatar Wiki</a> (Coming Soon)</h3>
-		<p>An upcoming independent community-focused wiki for Avatar: The Last Airbender and its extended universe of shows, animated films, books, and comics.</p>
-		<h3><a href=`https://dragcave.wiki`>The Dragon Cave Wiki</a></h3>
-		<p>An independent community-focused wiki for <a href=`https://dragcave.net`>Dragon Cave</a>. Like the Soulsborne Wikis, this website is a passion project run by us and the community to provide a valuable resource for a community we love.</p>
+		<p>
+			We develop all kinds of software projects, typically related to
+			games. These are tools we use and want to freely share with others.
+			You can check some of them out on our <a href={social.githubURL}
+				>GitHub</a
+			>.
+		</p>
 		<h2>Site Projects</h2>
 		<h3><a href=`https://runekit.com/`>Runekit</a></h3>
-		<p>A set of utilities and tools for RuneScape. <i>(Currently under construction.)</i></p>
+		<p>
+			A set of utilities and tools for RuneScape. <i
+				>(Currently under construction.)</i>
+		</p>
 		<h2>Utilities, Tools, and Libraries</h2>
-		<h3><a href=`https://github.com/adelheidsoftware/godot-utilities`>Godot Utilities</a></h3>
-		<p>A set of utilities we maintain for our games, available in a variety of languages, such as GDScript and C#.</p>
+		<h3>
+			<a href=`https://github.com/adelheidsoftware/godot-utilities`
+				>Godot Utilities</a>
+		</h3>
+		<p>
+			A set of utilities we maintain for our games, available in a variety
+			of languages, such as GDScript and C#.
+		</p>
 		<!-- <h2><a href=`${social.githubURL}/ohai`>Ohai</a></h2>
 		<p>Ohai is an open-source program that allows you to see all kinds of information about your hardware configuration, such as CPU and GPU information.</p>
 		<h2><a href=`${social.githubURL}/tojo`>Tojo</a></h2>
 		<p>Tojo is a Java GeoJSON and TopoJSON library.</p> -->
+		<h2>Wiki Projects</h2>
+		<p>
+			Our wiki projects are currently on hold as we prioritize our limited
+			resources on game projects. We previously ran and hosted wikis for
+			all Soulsborne titles, Avatar: The Last Airbender (and the expanded
+			universe), and Dragon Cave.<br /><br />Despite our commitment to
+			community-focused wikis with no ads or other embeds, handling all of
+			the technical costs ourselves, we found that we did not have the
+			expertise to get community buy-in for these independent wikis. We
+			would still love to host these wikis, but we need your help to do
+			it.<br /><br />Feel free to get in touch if you'd like to help bring
+			these wikis back. We would like to eventually bring the wikis back
+			even if we never get any community buy-in. However, without external
+			community buy-in right now is not the right time to do it.
+		</p>
+		<p>The wiki domains we own are listed below.</p>
+		<ol>
+			<li>soulsborne.wiki</li>
+			<li>avatar.wiki</li>
+			<li>dragcave.wiki</li>
+		</ol>
+		<!-- <h3><a href=`https://soulsborne.wiki`>The Soulsborne Wikis</a></h3>
+		<p>A set of independent community-focused wikis for all major Soulsborne titles. This website is a passion project run by us and the community to provide a valuable resource for a community we love.</p>
+		<h3><a href=`https://avatar.wiki`>The Avatar Wiki</a> (Coming Soon)</h3>
+		<p>An upcoming independent community-focused wiki for Avatar: The Last Airbender and its extended universe of shows, animated films, books, and comics.</p>
+		<h3><a href=`https://dragcave.wiki`>The Dragon Cave Wiki</a></h3>
+		<p>An independent community-focused wiki for <a href=`https://dragcave.net`>Dragon Cave</a>. Like the Soulsborne Wikis, this website is a passion project run by us and the community to provide a valuable resource for a community we love.</p> -->
 	</article>
 </PageLayout>
