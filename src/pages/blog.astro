@@ -7,14 +7,13 @@ import BlogPostSummary from '../components/BlogPostSummary.astro';
 import Pagination from '../components/Pagination.astro';
 
 import { blogPaginationSize } from '../constants.ts';
+import company from '../data/company.json';
 
-const posts = await getCollection("posts");
+const posts = await getCollection("posts", ({ data }) => import.meta.env.PROD ? !data.draft : true);
 posts.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
 const postsToDisplay = posts.slice(0, blogPaginationSize);
 
 const pageCount: number = Math.ceil(posts.length / blogPaginationSize);
-
-import company from '../data/company.json';
 ---
 
 <PageLayout title='Blog' description=`The official ${company.name} blog.`>
@@ -30,7 +29,7 @@ import company from '../data/company.json';
 					))
 				}
 			</ul>
-			<Pagination pageCount={pageCount} currentUrl="/blog" currentPageNumber={1} firstUrl="/blog" nextUrl="/blog/2"  lastUrl=`/blog/${pageCount}`/>
+			<Pagination pageCount={pageCount} currentUrl="/blog" firstUrl="/blog" nextUrl="/blog/2"  lastUrl=`/blog/${pageCount}`/>
 		</div>
 
 	</article>

@@ -3,7 +3,7 @@ import { getCollection } from 'astro:content';
 import company from '../data/company.json';
 
 export async function GET(context) {
-	const posts = await getCollection("posts");
+	const posts = await getCollection("posts", ({ data }) => import.meta.env.PROD ? !data.draft : true);
 	return rss({
 		title: `${company.name} | Blog`,
 		description: 'A feed of the latest posts from our blog.',

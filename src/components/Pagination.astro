@@ -2,14 +2,13 @@
 interface Props {
 	pageCount: number,
 	currentUrl: string,
-	currentPageNumber: number,
 	firstUrl: string,
 	prevUrl?: string,
 	nextUrl?: string,
 	lastUrl: string
 }
 
-const { pageCount, currentUrl, currentPageNumber, firstUrl, prevUrl, nextUrl, lastUrl } = Astro.props;
+const { pageCount, currentUrl, firstUrl, prevUrl, nextUrl, lastUrl } = Astro.props;
 ---
 {
 	pageCount > 1 &&

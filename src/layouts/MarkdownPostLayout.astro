@@ -180,7 +180,7 @@ time { // TODO: Fix time so it's in EST
 }
 </style>
 
-<script define:vars={{ headerLinkSvg, headerLinkClickedSvg }}>
+<script is:inline define:vars={{ headerLinkSvg, headerLinkClickedSvg }}>
 	const blogArticle = document.querySelector(".blog");
 	const anchorTemplate = document.createElement("a");
 	const headerLinkTemplate = document.createElement("span");

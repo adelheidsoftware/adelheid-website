@@ -3,11 +3,10 @@ import { getCollection } from "astro:content";
 import BaseLayout from '../../layouts/BaseLayout.astro';
 
 import LinkChip from '../../components/LinkChip.astro';
-
-const allPosts = await getCollection("posts");
-const uniqueTags = [...new Set(allPosts.map((post) => post.data.tags).flat())];
-
 import company from '../../data/company.json';
+
+const allPosts = await getCollection("posts", ({ data }) => import.meta.env.PROD ? !data.draft : true);
+const uniqueTags = [...new Set(allPosts.map((post) => post.data.tags).flat())];
 ---
 <BaseLayout title=`Tags | ${company.name} Blog` description=`All tags for ${company.name} blog posts.`>
 	<div class="wrapper">
