@@ -105,6 +105,6 @@ What does this mean for [gdscript-utilities](/blog/sharing-our-code-gdscript-uti
 
 So, what does this mean? When's the Postbound! update coming out? We don't have an exact timeline here, unfortunately. We would like it to be as soon as possible, but life events and other important tasks are keeping us quite busy right now. Rewriting Postbound! in C# should be a fairly quick process, and then adding the additional features and content we'd like to add on top of that should be a fairly speedy process as well.
 
-Ultimately, we want Postbound!'s next update to be stable and high quality, so we're going to take the time that's necessary to get it done right. We'll keep you updated on [Bluesky](https://bsky.app/profile/adelheid.org), so if you're keen to know the latest about what we're up to, follow us on there.
+Ultimately, we want Postbound!'s next update to be stable and high quality, so we're going to take the time that's necessary to get it done right. We'll keep you updated on [Bluesky](https://adelhe.id/bluesky), so if you're keen to know the latest about what we're up to, follow us on there.
 
 Thanks for reading!

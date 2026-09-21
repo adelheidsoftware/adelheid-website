@@ -33,4 +33,4 @@ Adelheid Software is an indie studio that develops games and game-related softwa
 
 ### Community & Contact
 
-Check us out on [Discord](https://discord.gg/8uWduVrUUa)!
+Check us out on [Discord](https://adelhe.id/discord)!
