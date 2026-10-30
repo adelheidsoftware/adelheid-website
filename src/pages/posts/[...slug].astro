@@ -1,0 +1,13 @@
+---
+import { getCollection } from 'astro:content';
+
+// Old blog post URLs (/posts/...) redirect to /blog/...
+// This can't be a redirect in astro.config.mjs: with build.format 'file', config redirects to a dynamic route
+// point at the built .html file, which makes visitors go through a second redirect.
+export async function getStaticPaths() {
+	const posts = await getCollection('posts', ({ data }) => import.meta.env.PROD ? !data.draft : true);
+	return posts.map((post) => ({ params: { slug: post.id } }));
+}
+
+return Astro.redirect(`/blog/${Astro.params.slug}`, 301);
+---

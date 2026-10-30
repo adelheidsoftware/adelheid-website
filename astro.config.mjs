@@ -12,10 +12,6 @@ export default defineConfig({
 		status: 301,
 		destination: '/favicon.png'
 	},
-	'/posts/[...slug]': {
-		status: 301,
-		destination: '/blog/[...slug]'
-	},
     '/privacy-policy': {
         status: 301,
         destination: '/privacy'
@@ -28,5 +24,8 @@ export default defineConfig({
   build: {
     format: 'file'
   },
-  integrations: [sitemap()]
+  integrations: [sitemap({
+    // Old post URLs that only redirect to /blog (see src/pages/posts/[...slug].astro)
+    filter: (page) => !new URL(page).pathname.startsWith('/posts/')
+  })]
 });
