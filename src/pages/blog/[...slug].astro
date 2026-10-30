@@ -13,7 +13,7 @@ const { entry } = Astro.props;
 const { Content } = await render(entry);
 ---
 <MarkdownPostLayout frontmatter={entry.data}>
-	<div class="blog">
+	<div class="blog post-content">
 		<Content />
 	</div>
 </MarkdownPostLayout>
@@ -58,9 +58,13 @@ h1, h2, h3, h4, h5, h6, p {
 }
 
 .blog {
-	font-family: 'Libron', serif;
 	font-size: 16px;
 	line-height: 20px;
+}
+
+// Only the markdown content, not the post header (MarkdownPostLayout's article also has the .blog class)
+.post-content {
+	font-family: 'Libron', serif;
 }
 
 @media (min-width: 768px) {
