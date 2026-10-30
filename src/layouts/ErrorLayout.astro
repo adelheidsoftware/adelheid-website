@@ -10,12 +10,14 @@ import MetaTags from '../components/base/MetaTags.astro';
 
 import Header from '../components/base/Header.astro';
 
-// Supports weights 100-900
-import '@fontsource/noto-sans';
-import '@fontsource/noto-mono';
-import '@fontsource/noto-sans-mono';
-import '@fontsource/noto-sans-display';
-import '@fontsource/noto-sans-math';
+// Each weight used on the site must be imported, or browsers fake bold text
+import '@fontsource/noto-sans/400.css';
+import '@fontsource/noto-sans/500.css';
+import '@fontsource/noto-sans/600.css';
+import '@fontsource/noto-sans/700.css';
+import '@fontsource/noto-sans/900.css';
+import '@fontsource/noto-sans-mono/400.css';
+import '@fontsource/noto-sans-mono/700.css';
 
 import '../styles/global.scss';
 
