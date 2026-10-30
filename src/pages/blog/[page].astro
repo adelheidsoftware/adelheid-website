@@ -32,7 +32,7 @@ const pageCount: number = Math.ceil(posts.length / blogPaginationSize);
 				{
 					page.data.map((post) => (
 						<BlogPostSummary href={`/blog/${post.id}`} title={post.data.title} summary={post.data.summary} date={post.data.pubDate} timeZone={post.data.timeZone} author={post.data.author} postText={post.body} />
-						<div class="post-separator"></div>
+						<li class="post-separator" aria-hidden="true"></li>
 					))
 				}
 			</ul>
@@ -50,5 +50,7 @@ ul {
 	border-bottom: 1px solid var(--color-outline);
 	margin-left: 16px;
 	margin-right: 16px;
+	list-style: none;
+	padding: 0 !important; // Overrides PageLayout's global list item padding
 }
 </style>

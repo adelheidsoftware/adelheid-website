@@ -14,14 +14,14 @@ import postbound from '../data/games/postbound.json';
 	<Fragment slot="page-header">Games</Fragment>
 	<article slot="page-content">
 		<h2>Released</h2>
-		<div class="game-grid">
+		<ul class="game-grid" role="list">
 			<GameCard href="/games/postbound" title="Postbound!" image={postboundImage} body=`${postbound.name} is a 2D arcade-style mail sorting game following your journey as a novice postal worker.`/>
-		</div>
+		</ul>
 		<h2>Upcoming</h2>
-		<div class="game-grid">
+		<ul class="game-grid" role="list">
 			<GameCard href="https://adelkrieg.com" title="Adelkrieg" image={adelkriegImage} body=`Re-releases 2026. Adelkrieg is a conflict simulator that allows you to play out scenarios on a variety of maps.`/>
 			<GameCard href="" title="Project Artemis" body=`Still under heavy development. Check back later this year!`/>
-		</div>
+		</ul>
 		<!--<h2>Released</h2>
 		<p><i>Nothing yet.</i></p>-->
 	</article>
@@ -32,6 +32,8 @@ import postbound from '../data/games/postbound.json';
 .game-grid {
 	display: flex;
 	flex-wrap: wrap;
+	margin: 0;
+	padding: 0;
 }
 
 

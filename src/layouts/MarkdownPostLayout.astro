@@ -146,16 +146,25 @@ time {
 </style>
 
 <style lang="scss" is:global>
+// Copy-link buttons added to headings by the script below
+.header-link-icon,
+.header-link-clicked-icon {
+	background: none;
+	border: none;
+	margin: 0;
+	font: inherit;
+}
+
 .header-link-icon {
 	text-decoration: none;
 	display: inline-flex;
 	vertical-align: middle;
 	cursor: pointer;
 	height: 100%;
-	visibility: hidden;
+	opacity: 0; // Not visibility: hidden, which would also stop keyboard users from focusing it
 
 	color: var(--color-primary);
-	padding-left: 4px;
+	padding: 0 0 0 4px;
 
 	&:hover {
 		color: var(--color-tertiary);
@@ -169,28 +178,32 @@ time {
 	height: 100%;
 
 	color: #1a7f37;
-	padding-left: 4px;
+	padding: 0 0 0 4px;
 }
 
 .blog h2:hover .header-link-icon,
 .blog h3:hover .header-link-icon,
 .blog h4:hover .header-link-icon,
 .blog h5:hover .header-link-icon,
-.blog h6:hover .header-link-icon {
-	visibility: visible;
+.blog h6:hover .header-link-icon,
+.header-link-icon:focus-visible {
+	opacity: 1;
 }
 </style>
 
 <script is:inline define:vars={{ headerLinkSvg, headerLinkClickedSvg }}>
 	const blogArticle = document.querySelector(".blog");
 	const anchorTemplate = document.createElement("a");
-	const headerLinkTemplate = document.createElement("span");
+	const headerLinkTemplate = document.createElement("button");
+	const headerLinkLabel = "Copy link to this section";
 
 	if(blogArticle) {
 		const anchorHeadings = blogArticle.querySelectorAll("h2, h3, h4, h5, h6");
 
 		anchorTemplate.href = "#";
 
+		headerLinkTemplate.type = "button";
+		headerLinkTemplate.setAttribute("aria-label", headerLinkLabel);
 		headerLinkTemplate.setAttribute("title", "Click to copy a link to this section.");
 		headerLinkTemplate.classList.add("header-link-icon");
 
@@ -209,11 +222,13 @@ time {
 					headerLinkWrapper.classList.add("header-link-clicked-icon");
 					headerLinkWrapper.classList.remove("header-link-icon");
 					headerLinkWrapper.innerHTML = headerLinkClickedSvg;
+					headerLinkWrapper.setAttribute("aria-label", "Link copied");
 
 					setTimeout(() => {
 						headerLinkWrapper.classList.remove("header-link-clicked-icon");
 						headerLinkWrapper.classList.add("header-link-icon");
 						headerLinkWrapper.innerHTML = headerLinkSvg;
+						headerLinkWrapper.setAttribute("aria-label", headerLinkLabel);
 					}, 2000);
 				})
 				.catch((err) => {

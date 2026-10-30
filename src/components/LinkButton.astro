@@ -8,11 +8,11 @@ const { href, label } = Astro.props;
 ---
 
 <a href={href}>
-	<button>{label}</button>
+	<span class="button">{label}</span>
 </a>
 
 <style lang="scss">
-button {
+.button {
 	border: none;
 	display: inline-block;
 	border-radius: 24px;
