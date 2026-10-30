@@ -1,11 +1,11 @@
-export function getCanonicalURL(pathname: string): string {
-	var canonicalURL = new URL(pathname, import.meta.env.SITE);
-	var result = canonicalURL.href.replace(/\/+$/, '');
-	if(result.includes('.html')) {
-		result = result.substring(0, result.lastIndexOf('.')) || result;
-	}
+// Turns a built page's path into its public path, e.g. "/faq.html" -> "/faq" and "/index.html" -> "/"
+export function getPagePath(pathname: string): string {
+	const path = pathname.replace(/\.html$/, '').replace(/\/index$/, '/');
+	return path.length > 1 ? path.replace(/\/+$/, '') : path;
+}
 
-    return result;
+export function getCanonicalURL(pathname: string): string {
+	return new URL(getPagePath(pathname), import.meta.env.SITE).href;
 }
 
 export const blogPaginationSize: number = 5;
