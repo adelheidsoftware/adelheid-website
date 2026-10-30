@@ -1,6 +1,7 @@
 ---
 title: 'Postbound! Demo Release - Steam Next Fest June Edition'
-pubDate: 2024-06-10T16:12:00.000-05:00
+pubDate: 2024-06-10T16:12:00
+timeZone: "America/New_York"
 summary: 'Our demo is available on Steam! Go try it out and send us your feedback!'
 author: 'Aaron Yoder'
 authorTitle: ''

@@ -1,6 +1,7 @@
 ---
 title: "Development Changes & Postbound! Update Delay"
-pubDate: 2025-02-01T15:15:00.000-05:00
+pubDate: 2025-02-01T15:15:00
+timeZone: "America/New_York"
 summary: "We talk about where we've been, where we're at, and where we're headed."
 author: 'Aaron Yoder'
 authorTitle: ''

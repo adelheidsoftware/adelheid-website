@@ -12,7 +12,8 @@ const { frontmatter } = Astro.props;
 const dateOptions: object = {
 	year: "numeric",
 	month: "long",
-	day: "numeric"
+	day: "numeric",
+	timeZone: frontmatter.timeZone // Show the date where the post was written, not the build machine's timezone
 };
 
 const formattedDate = frontmatter.pubDate != undefined ? new Intl.DateTimeFormat("en-US", dateOptions).format(frontmatter.pubDate) : undefined;
@@ -64,7 +65,7 @@ import company from '../data/company.json';
 
 <style lang="scss">
 
-time { // TODO: Fix time so it's in EST
+time {
 	display: block;
 	font-size: 1rem;
 	line-height: 1.5;

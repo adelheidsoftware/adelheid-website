@@ -6,16 +6,18 @@ interface Props {
 	author: string;
 	postText?: string;
 	date?: Date;
+	timeZone: string;
 }
 
 import LinkCard from '../components/LinkCard.astro';
-const { href, title, summary, author, postText, date } = Astro.props;
+const { href, title, summary, author, postText, date, timeZone } = Astro.props;
 
 // Date
 const dateOptions: object = {
 	year: "numeric",
 	month: "long",
-	day: "numeric"
+	day: "numeric",
+	timeZone: timeZone // Show the date where the post was written, not the build machine's timezone
 };
 
 const formattedDate = date != undefined ? new Intl.DateTimeFormat("en-US", dateOptions).format(date) : undefined;

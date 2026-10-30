@@ -1,6 +1,7 @@
 ---
 title: "Adelkrieg Dev Blog: A Backend Architecture Deep Dive"
-pubDate: 2026-02-28T22:00:00.000-05:00
+pubDate: 2026-02-28T22:00:00
+timeZone: "America/New_York"
 summary: "A look at the engine powering Adelkrieg, from handling concurrent lobbies and social features to our modular, event-driven game core."
 author: 'Aaron Yoder'
 authorTitle: ''

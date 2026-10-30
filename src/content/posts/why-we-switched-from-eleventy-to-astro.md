@@ -1,6 +1,7 @@
 ---
 title: 'Why We Switched From Eleventy To Astro'
-pubDate: 2024-02-11T17:15:00.000-05:00
+pubDate: 2024-02-11T17:15:00
+timeZone: "America/New_York"
 summary: "What's so great about Astro? Learn more in this blog post!"
 author: 'Aaron Yoder'
 authorTitle: ''

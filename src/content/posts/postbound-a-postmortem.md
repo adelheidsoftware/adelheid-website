@@ -1,6 +1,7 @@
 ---
 title: 'Postbound!: A Postmortem'
-pubDate: 2024-08-30T06:02:00.000-05:00
+pubDate: 2024-08-30T06:02:00
+timeZone: "America/New_York"
 summary: "We go over the development process and talk about what's next."
 author: 'Aaron Yoder'
 authorTitle: ''

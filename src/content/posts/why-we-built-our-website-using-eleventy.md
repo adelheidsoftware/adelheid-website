@@ -1,6 +1,7 @@
 ---
 title: 'Why We Built Our Website Using Eleventy'
-pubDate: 2023-11-25T15:30:00.000-05:00
+pubDate: 2023-11-25T15:30:00
+timeZone: "America/New_York"
 summary: 'Learn about why we decided to use Eleventy to build our website.'
 author: 'Aaron Yoder'
 authorTitle: ''

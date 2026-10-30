@@ -1,6 +1,7 @@
 ---
 title: "Sharing Our Code: GDScript Utilities"
-pubDate: 2024-07-02T20:07:00.000-05:00
+pubDate: 2024-07-02T20:07:00
+timeZone: "America/New_York"
 summary: 'We are releasing an open-source repository filled with algorithmic goodies!'
 author: 'Aaron Yoder'
 authorTitle: ''

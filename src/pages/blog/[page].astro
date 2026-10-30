@@ -31,7 +31,7 @@ const pageCount: number = Math.ceil(posts.length / blogPaginationSize);
 			<ul>
 				{
 					page.data.map((post) => (
-						<BlogPostSummary href={`/blog/${post.id}`} title={post.data.title} summary={post.data.summary} date={post.data.pubDate} author={post.data.author} postText={post.body} />
+						<BlogPostSummary href={`/blog/${post.id}`} title={post.data.title} summary={post.data.summary} date={post.data.pubDate} timeZone={post.data.timeZone} author={post.data.author} postText={post.body} />
 						<div class="post-separator"></div>
 					))
 				}
