@@ -15,5 +15,6 @@ export async function GET(context) {
 			link: `/blog/${post.id}`,
 		  })),
 		customData: `<language>en-us</language>`,
+		trailingSlash: false, // Match the site's URLs (trailingSlash: 'never' in astro.config.mjs)
 	});
 }
