@@ -28,21 +28,10 @@ import postbound from '../data/games/postbound.json';
 </PageLayout>
 
 <style lang="scss">
+// Fits as many cards per row as the width allows (fixed grid columns overflowed when narrower than a card)
 .game-grid {
-	display: grid;
-	grid-template-columns: repeat(1, 1fr);
-}
-
-@media (min-width: 772px) {
-	.game-grid {
-		grid-template-columns: repeat(2, 1fr);
-	}
-}
-
-@media (min-width: 1142px) {
-	.game-grid {
-		grid-template-columns: repeat(3, 1fr);
-	}
+	display: flex;
+	flex-wrap: wrap;
 }
 
 
